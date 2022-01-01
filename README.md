@@ -1,6 +1,6 @@
 # Web-Crear-Mostruos
 
-## Proyecto de practica en Java 17 yservlets
+## Proyecto de practica en Java 17 y servlets
 
 _El mismo consiste en permitir a los usuarios crear una criatura con unas pocas partes_
 
