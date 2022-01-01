@@ -6,7 +6,7 @@ _El mismo consiste en permitir a los usuarios crear una criatura con unas pocas 
 
 ### Futuras implementaciones
 
-**1:** _El usuario puede ver una criatura en especifico_ .
+**1:** _El usuario puede ver una criatura en especifico_ . ✔️
 
 **2:** _El usuario puede editar una criatura en especifico_.
 
