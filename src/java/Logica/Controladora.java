@@ -51,4 +51,13 @@ public class Controladora {
     public List<Criatura> traerCriaturas(){
         return controlPersis.traerCriaturas();
     }
+
+    public Criatura buscarCriatura(int id) {
+        try{
+            return controlPersis.buscarCriatura(id);
+        }catch(Exception e){
+            
+        }
+        return null;
+    }
 }

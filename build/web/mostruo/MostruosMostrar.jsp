@@ -172,8 +172,8 @@
 
                                 %>
                                 <li class="one_quarter <%=first%>">
-                                    <form action="../index" method="POST">
-                                        <input type="hidden" value="<%=criatura.getId_Criatura() %>">
+                                    <form action="../SvMostruoBuscar" method="POST">
+                                        <input type="hidden" name="id" value="<%=criatura.getId_Criatura() %>">
                                         <input class="imgOp" type="image" src=" <%=image%> " name="submit" alt="submit">
                                     </form>
                                     <a href="index.jsp"></a>

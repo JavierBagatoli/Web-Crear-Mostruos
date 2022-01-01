@@ -34,5 +34,9 @@ public class ControladoraPersistencia {
     public List<Criatura> traerCriaturas() {
         return criaturaJPA.findCriaturaEntities();
     }
+
+    public Criatura buscarCriatura(int id) {
+       return criaturaJPA.findCriatura(id);
+    }
     
 }
