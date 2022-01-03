@@ -28,6 +28,19 @@
         <% HttpSession misession = request.getSession();
             Criatura criatura = (Criatura) misession.getAttribute("criatura");
             {
+                String ojo1 = "No se han ingresado Ojos";
+                String brazo1 = "No se han ingresado Brazos";
+                String pierna1 = "No se han ingresado Piernas";
+                if (criatura.getCabeza().getOjos().size() > 0){
+                    ojo1 = criatura.getCabeza().getOjos().get(0).getNombre();
+                }
+                if (criatura.getCuerpo().getBrazos().size() > 0){
+                    brazo1 = criatura.getCuerpo().getBrazos().get(0).getNombre();
+                }
+                if (criatura.getCuerpo().getPiernas().size() > 0){
+                    pierna1 = criatura.getCuerpo().getPiernas().get(0).getPierna();
+                }
+                
         %>        
         <h1 class="titulo"><%=criatura.getNombre() %></h1>
         <div class="contenedor">
@@ -42,7 +55,7 @@
                         
                         <div class="one_third first">
                             <h4 class="one_third">Ojo:</h4>
-                            <h6 class="one_half"><%=criatura.getCabeza().getOjos().get(0).getNombre() %></h6>
+                            <h6 class="one_half"><%=ojo1 %></h6>
                         </div>
                         
                         <div class="one_third first">
@@ -52,12 +65,12 @@
 
                         <div class="one_third first">
                             <h4 class="one_third">Brazos </h4>
-                            <h6 class="one_half"><%=criatura.getCuerpo().getBrazos().get(0).getNombre() %></h6>
+                            <h6 class="one_half"><%=brazo1 %></h6>
                         </div>
                         
                         <div class="one_third first">
                             <h4 class="one_third">Piernas: </h4>
-                            <h6 class="one_half"><%=criatura.getCuerpo().getPiernas().get(0).getPierna() %></h6>
+                            <h6 class="one_half"><%=pierna1 %></h6>
                         </div>               
 
                         <div class="block clear textarea">
@@ -66,6 +79,8 @@
                                 <h6 class="one_half"><%=criatura.getCuerpo().getPiernas().get(0).getPierna().getClass() + " " +criatura.getClass() %></h6>
                             </div>
                         </div>
+
+                                <input type="hidden" name="id" value="<%=criatura.getId_Criatura() %>">
 
                         <div>
                             <input type="submit" name="submit" value="Editar">

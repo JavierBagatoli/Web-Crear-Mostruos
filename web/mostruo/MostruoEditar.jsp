@@ -28,13 +28,25 @@
         <% HttpSession misession = request.getSession();
             Criatura criatura = (Criatura) misession.getAttribute("criatura");
             {
+                String ojo1 = "No se han ingresado Ojos";
+                String brazo1 = "No se han ingresado Brazos";
+                String pierna1 = "No se han ingresado Piernas";
+                if (criatura.getCabeza().getOjos().size() > 0){
+                    ojo1 = criatura.getCabeza().getOjos().get(0).getNombre();
+                }
+                if (criatura.getCuerpo().getBrazos().size() > 0){
+                    brazo1 = criatura.getCuerpo().getBrazos().get(0).getNombre();
+                }
+                if (criatura.getCuerpo().getPiernas().size() > 0){
+                    pierna1 = criatura.getCuerpo().getPiernas().get(0).getPierna();
+                }
         %>        
         <h1 class="titulo">Editar <%=criatura.getNombre() %></h1>
         <div class="contenedor">
             <div class="wrapper row4 contenedor">
 
                 <div id="comments">
-                    <form action="../SvMostruoAlta" method="POST" class="containerMostruo">
+                    <form action="../SvMostruoEditar" method="POST" class="containerMostruo">
                         <div class="one_third first">
                             <label for="nombreMostruo">Nombre: <span>*</span></label>
                             <input type="text" name="nombreMostruo" id="nombreMostruo" value="<%=criatura.getNombre() %>" size="22" required>
@@ -47,7 +59,7 @@
 
                         <div class="one_third first">
                             <label for="nombreOjo">Ojo: <span>*</span></label>
-                            <input type="text" name="nombreOjo" id="nombreOjo" value="<%=criatura.getCabeza().getOjos().get(0).getNombre() %>" size="22" required>
+                            <input type="text" name="nombreOjo" id="nombreOjo" value="<%=ojo1 %>" size="22" required>
                         </div>
 
                         <div class="one_third first">
@@ -56,20 +68,22 @@
                         </div>
                         <div class="one_third first">
                             <label for="nombreBrazo">Brazo: <span>*</span></label>
-                            <input type="text" name="nombreBrazo" id="nombreBrazo" value="<%=criatura.getCuerpo().getBrazos().get(0).getNombre() %>" size="22" required>
+                            <input type="text" name="nombreBrazo" id="nombreBrazo" value="<%=brazo1 %>" size="22" required>
                         </div>
                         <div class="one_third">
                             <label for="nombrePierna">Pierna: <span>*</span></label>
-                            <input type="text" name="nombrePierna" id="nombrePierna" value="<%=criatura.getCuerpo().getPiernas().get(0).getPierna() %>" size="22" required>
+                            <input type="text" name="nombrePierna" id="nombrePierna" value="<%=pierna1 %>" size="22" required>
                         </div>                
 
                         <div class="block clear textarea">
                             <label for="descripcion">Descripción: </label>
                             <textarea class="" name="descripcion" id="descripcion" rows="10"></textarea>
                         </div>
-
+                        <!-- Campos ocultos -->
+                        <input type="hidden" name="id" value="<%=criatura.getId_Criatura() %>">
+                        <!-- Botones -->
                         <div>
-                            <input type="submit" name="submit" value="Crear">
+                            <input type="submit" name="submit" value="Editar">
                             &nbsp;
                             <input type="reset" name="reset" value="Reset Form">
                         </div>

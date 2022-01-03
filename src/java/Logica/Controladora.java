@@ -60,4 +60,75 @@ public class Controladora {
         }
         return null;
     }
+
+    public void mostruoEditar(int id, String nombreMostruo, String nombreCabeza, String nombreOjo, String nombreCuerpo, String nombreBrazo, String nombrePierna) throws Exception {
+        Criatura criatura = controlPersis.buscarCriatura(id);
+        criatura.setNombre(nombreMostruo);
+        
+        ArrayList<Ojo> listaOjos = new ArrayList<Ojo>();
+        Ojo ojo;
+        Ojo ojoBuscado = controlPersis.buscarOjo(nombreOjo);
+        if (ojoBuscado != null){
+            ojo = ojoBuscado;
+        }else{
+            ojo = new Ojo();
+            ojo.setNombre(nombreOjo);
+            
+        }
+        listaOjos.clear();
+        listaOjos.add(ojo);
+        
+        Cabeza cabeza;
+        if (controlPersis.buscarCabeza(nombreCabeza) != null){
+            cabeza = controlPersis.buscarCabeza(nombreCabeza);
+            cabeza.setOjos(listaOjos);
+        }else{
+            cabeza = new Cabeza();
+            cabeza.setNombre(nombreCabeza);
+            cabeza.setOjos(listaOjos);
+        }
+        
+        ArrayList<Brazo> listaBrazos = new ArrayList<Brazo>();
+        Brazo brazo;
+        Brazo brazoBusqueda = controlPersis.buscarBrazo(nombreBrazo);
+        if (brazoBusqueda != null){
+            brazo = brazoBusqueda;
+        }else{
+            brazo = new Brazo();
+            brazo.setNombre(nombreBrazo);
+        }
+        listaBrazos.clear();
+        listaBrazos.add(brazo);
+        
+        ArrayList<Pierna> listaPiernas = new ArrayList<Pierna>();
+        Pierna pierna;
+        Pierna piernaBusqueda = controlPersis.buscarPierna(nombrePierna);
+        if (piernaBusqueda != null){
+            pierna = piernaBusqueda;
+        }else{
+            pierna = new Pierna();
+            pierna.setPierna(nombrePierna);
+        }
+        listaPiernas.clear();
+        listaPiernas.add(pierna);
+        
+        
+        Cuerpo cuerpo;
+        Cuerpo cuerpoBuscado = controlPersis.buscarCuerpo(nombreCuerpo);
+        if (cuerpoBuscado != null){
+            cuerpo = cuerpoBuscado;
+            cuerpo.setBrazos(listaBrazos);
+            cuerpo.setPiernas(listaPiernas);
+        }else{
+            cuerpo = new Cuerpo();
+            cuerpo.setNombre(nombreCuerpo);
+            cuerpo.setBrazos(listaBrazos);
+            cuerpo.setPiernas(listaPiernas);
+        }
+        
+        criatura.setCabeza(cabeza);
+        criatura.setCuerpo(cuerpo);
+        
+        controlPersis.modificarCriatura(criatura);
+    }
 }
