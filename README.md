@@ -8,7 +8,9 @@ _El mismo consiste en permitir a los usuarios crear una criatura con unas pocas 
 
 **1:** _El usuario puede ver una criatura en especifico_ . ✔️
 
-**2:** _El usuario puede editar una criatura en especifico_.
+**2:** _El usuario puede editar una criatura en especifico_. ✔️
+
+**2.1:** _Arreglar formato de para la busqueda (agregar input hidden ID de cada componente)_.
 
 **3:** _El usuario puede crear una criatura y dejar su firma_.
 
