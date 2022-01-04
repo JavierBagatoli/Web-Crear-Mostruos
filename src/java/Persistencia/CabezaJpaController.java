@@ -61,7 +61,7 @@ public class CabezaJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                int id = cabeza.getId_Cabeza();
+                int id = cabeza.getIdCabeza();
                 if (findCabeza(id) == null) {
                     throw new NonexistentEntityException("The cabeza with id " + id + " no longer exists.");
                 }
@@ -82,7 +82,7 @@ public class CabezaJpaController implements Serializable {
             Cabeza cabeza;
             try {
                 cabeza = em.getReference(Cabeza.class, id);
-                cabeza.getId_Cabeza();
+                cabeza.getIdCabeza();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The cabeza with id " + id + " no longer exists.", enfe);
             }

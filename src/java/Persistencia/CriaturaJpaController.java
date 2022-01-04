@@ -59,7 +59,7 @@ public class CriaturaJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                int id = criatura.getId_Criatura();
+                int id = criatura.getIdCriatura();
                 if (findCriatura(id) == null) {
                     throw new NonexistentEntityException("The criatura with id " + id + " no longer exists.");
                 }
@@ -80,7 +80,7 @@ public class CriaturaJpaController implements Serializable {
             Criatura criatura;
             try {
                 criatura = em.getReference(Criatura.class, id);
-                criatura.getId_Criatura();
+                criatura.getIdCriatura();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The criatura with id " + id + " no longer exists.", enfe);
             }

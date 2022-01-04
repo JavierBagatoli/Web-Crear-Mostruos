@@ -87,7 +87,7 @@ public class ControladoraPersistencia {
         List<Pierna> listaPienra = piernaJPA.findPiernaEntities();
         Pierna piernaBuscada= null;
         for(Pierna pierna : listaPienra){
-            if (pierna.getPierna().equals(nombrePierna)){
+            if (pierna.getNombrePierna().equals(nombrePierna)){
                 return pierna;
             }
         }

@@ -8,6 +8,11 @@
     <class>Logica.Cuerpo</class>
     <class>Logica.Ojo</class>
     <class>Logica.Pierna</class>
+    <class>Logica.Ambiente.Clima</class>
+    <class>Logica.Ambiente.Planeta</class>
+    <class>Logica.Persona</class>
+    <class>Logica.Visibilidad</class>
+    <class>Logica.Firma</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mostruos?serverTimezone=UTC"/>

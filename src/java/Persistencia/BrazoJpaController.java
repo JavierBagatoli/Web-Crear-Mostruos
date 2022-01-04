@@ -60,7 +60,7 @@ public class BrazoJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                int id = brazo.getId_Brazo();
+                int id = brazo.getIdBrazo();
                 if (findBrazo(id) == null) {
                     throw new NonexistentEntityException("The brazo with id " + id + " no longer exists.");
                 }
@@ -81,7 +81,7 @@ public class BrazoJpaController implements Serializable {
             Brazo brazo;
             try {
                 brazo = em.getReference(Brazo.class, id);
-                brazo.getId_Brazo();
+                brazo.getIdBrazo();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The brazo with id " + id + " no longer exists.", enfe);
             }

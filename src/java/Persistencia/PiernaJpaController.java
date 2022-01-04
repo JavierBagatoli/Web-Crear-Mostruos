@@ -59,7 +59,7 @@ private EntityManagerFactory emf = null;
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                int id = pierna.getId_Pierna();
+                int id = pierna.getIdPierna();
                 if (findPierna(id) == null) {
                     throw new NonexistentEntityException("The pierna with id " + id + " no longer exists.");
                 }
@@ -80,7 +80,7 @@ private EntityManagerFactory emf = null;
             Pierna pierna;
             try {
                 pierna = em.getReference(Pierna.class, id);
-                pierna.getId_Pierna();
+                pierna.getIdPierna();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The pierna with id " + id + " no longer exists.", enfe);
             }

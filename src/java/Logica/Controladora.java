@@ -29,7 +29,7 @@ public class Controladora {
         brazo.setNombre(nombreBrazo);
 
         Pierna pierna = new Pierna();
-        pierna.setPierna(nombrePierna);
+        pierna.setNombrePierna(nombrePierna);
         
         Cuerpo cuerpo = new Cuerpo();
         cuerpo.setNombre(nombreCuerpo);
@@ -107,7 +107,7 @@ public class Controladora {
             pierna = piernaBusqueda;
         }else{
             pierna = new Pierna();
-            pierna.setPierna(nombrePierna);
+            pierna.setNombrePierna(nombrePierna);
         }
         listaPiernas.clear();
         listaPiernas.add(pierna);

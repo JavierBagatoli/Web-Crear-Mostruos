@@ -59,7 +59,7 @@ private EntityManagerFactory emf = null;
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                int id = cuerpo.getId_Persona();
+                int id = cuerpo.getIdCuerpo();
                 if (findCuerpo(id) == null) {
                     throw new NonexistentEntityException("The cuerpo with id " + id + " no longer exists.");
                 }
@@ -80,7 +80,7 @@ private EntityManagerFactory emf = null;
             Cuerpo cuerpo;
             try {
                 cuerpo = em.getReference(Cuerpo.class, id);
-                cuerpo.getId_Persona();
+                cuerpo.getIdCuerpo();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The cuerpo with id " + id + " no longer exists.", enfe);
             }

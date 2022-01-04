@@ -48,7 +48,7 @@
                 <div id="comments">
                     <form action="../SvMostruoEditar" method="POST" class="containerMostruo">
                         <div class="one_third first">
-                            <label for="nombreMostruo">Nombre: <span>*</span></label>
+                            <label for="nombreCriatura">Nombre: <span>*</span></label>
                             <input type="text" name="nombreMostruo" id="nombreMostruo" value="<%=criatura.getNombre() %>" size="22" required>
                         </div>
 
@@ -80,7 +80,10 @@
                             <textarea class="" name="descripcion" id="descripcion" rows="10"></textarea>
                         </div>
                         <!-- Campos ocultos -->
-                        <input type="hidden" name="id" value="<%=criatura.getId_Criatura() %>">
+                        <input type="hidden" name="idCriatura" value="<%=criatura.getId_Criatura() %>">
+                        <input type="hidden" name="idCabeza" value="<%=criatura.getCabeza().getId_Cabeza() %>">
+                        <input type="hidden" name="idCriatura" value="<%=criatura.getCuerpo().getId_Persona() %>">
+                        
                         <!-- Botones -->
                         <div>
                             <input type="submit" name="submit" value="Editar">

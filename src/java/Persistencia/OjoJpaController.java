@@ -59,7 +59,7 @@ private EntityManagerFactory emf = null;
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                int id = ojo.getId_ojo();
+                int id = ojo.getIdOjo();
                 if (findOjo(id) == null) {
                     throw new NonexistentEntityException("The ojo with id " + id + " no longer exists.");
                 }
@@ -80,7 +80,7 @@ private EntityManagerFactory emf = null;
             Ojo ojo;
             try {
                 ojo = em.getReference(Ojo.class, id);
-                ojo.getId_ojo();
+                ojo.getIdOjo();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The ojo with id " + id + " no longer exists.", enfe);
             }

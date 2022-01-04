@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -19,33 +20,63 @@ import javax.persistence.Id;
 public class Pierna implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id_Pierna;
+    private int idPierna;
     @Basic
-    private String Pierna;
+    private String nombrePierna;
+    private String descripcion;
+    @ManyToOne
+    private Firma firma;
+    @ManyToOne
+    private Visibilidad visibilidad;
 
-    public int getId_Pierna() {
-        return id_Pierna;
+    public int getIdPierna() {
+        return idPierna;
     }
 
-    public void setId_Pierna(int id_Pierna) {
-        this.id_Pierna = id_Pierna;
-    }
-    
-    public String getPierna() {
-        return Pierna;
+    public void setIdPierna(int idPierna) {
+        this.idPierna = idPierna;
     }
 
-    public void setPierna(String Pierna) {
-        this.Pierna = Pierna;
+    public String getNombrePierna() {
+        return nombrePierna;
+    }
+
+    public void setNombrePierna(String nombrePierna) {
+        this.nombrePierna = nombrePierna;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Firma getFirma() {
+        return firma;
+    }
+
+    public void setFirma(Firma firma) {
+        this.firma = firma;
+    }
+
+    public Visibilidad getVisibilidad() {
+        return visibilidad;
+    }
+
+    public void setVisibilidad(Visibilidad visibilidad) {
+        this.visibilidad = visibilidad;
     }
 
     public Pierna() {
     }
 
-    public Pierna(int id_Pierna, String Pierna) {
-        this.id_Pierna = id_Pierna;
-        this.Pierna = Pierna;
+    public Pierna(int idPierna, String nombrePierna, String descripcion, Firma firma, Visibilidad visibilidad) {
+        this.idPierna = idPierna;
+        this.nombrePierna = nombrePierna;
+        this.descripcion = descripcion;
+        this.firma = firma;
+        this.visibilidad = visibilidad;
     }
-    
-    
 }

@@ -22,34 +22,43 @@ import javax.persistence.OneToMany;
 public class Cuerpo implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id_Persona;
-    
-    @OneToMany
-    private ArrayList<Brazo> brazos;
-    
-    @OneToMany
-    private ArrayList<Pierna> piernas;
+    private int idCuerpo;
     @Basic
     private String nombre;
-    
-    public Cuerpo() {
+    private String descripcion;
+    @OneToMany
+    private ArrayList<Brazo> brazos;
+    @OneToMany
+    private ArrayList<Pierna> piernas;
+    @ManyToOne
+    private Firma firma;
+    @ManyToOne
+    private Visibilidad visibilidad;
+
+    public int getIdCuerpo() {
+        return idCuerpo;
     }
 
-    public Cuerpo(String nombre,int id_Persona, ArrayList<Brazo> brazos, ArrayList<Pierna> piernas) {
+    public void setIdCuerpo(int idCuerpo) {
+        this.idCuerpo = idCuerpo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
         this.nombre = nombre;
-        this.id_Persona = id_Persona;
-        this.brazos = brazos;
-        this.piernas = piernas;
     }
 
-    public int getId_Persona() {
-        return id_Persona;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setId_Persona(int id_Persona) {
-        this.id_Persona = id_Persona;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
-    
+
     public ArrayList<Brazo> getBrazos() {
         return brazos;
     }
@@ -66,12 +75,34 @@ public class Cuerpo implements Serializable {
         this.piernas = piernas;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Firma getFirma() {
+        return firma;
     }
 
-    public void setNombre(String nombre) {
+    public void setFirma(Firma firma) {
+        this.firma = firma;
+    }
+
+    public Visibilidad getVisibilidad() {
+        return visibilidad;
+    }
+
+    public void setVisibilidad(Visibilidad visibilidad) {
+        this.visibilidad = visibilidad;
+    }
+
+    public Cuerpo() {
+    }
+
+    public Cuerpo(int idCuerpo, String nombre, String descripcion, ArrayList<Brazo> brazos, ArrayList<Pierna> piernas, Firma firma, Visibilidad visibilidad) {
+        this.idCuerpo = idCuerpo;
         this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.brazos = brazos;
+        this.piernas = piernas;
+        this.firma = firma;
+        this.visibilidad = visibilidad;
     }
-
+    
+    
 }

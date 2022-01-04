@@ -5,8 +5,11 @@
         <group>
             <file>file:/D:/Javier/Documentos/NetBeansProjects/Mostruos/web/mostruo/MostruoMostrar.jsp</file>
             <file>file:/D:/Javier/Documentos/NetBeansProjects/Mostruos/src/java/Logica/Controladora.java</file>
-            <file>file:/D:/Javier/Documentos/NetBeansProjects/Mostruos/src/java/Servlet/Mostruo/SvMostruoBuscar.java</file>
-            <file>file:/D:/Javier/Documentos/NetBeansProjects/Mostruos/src/java/Servlet/Mostruo/SvMostruoAlta.java</file>
+            <file>file:/D:/Javier/Documentos/NetBeansProjects/Mostruos/src/java/Logica/Cuerpo.java</file>
+            <file>file:/D:/Javier/Documentos/NetBeansProjects/Mostruos/web/mostruo/MostruoEditar.jsp</file>
+            <file>file:/D:/Javier/Documentos/NetBeansProjects/Mostruos/src/java/Servlet/Mostruo/SvMostruoEditar.java</file>
+            <file>file:/D:/Javier/Documentos/NetBeansProjects/Mostruos/src/java/Persistencia/ControladoraPersistencia.java</file>
+            <file>file:/D:/Javier/Documentos/NetBeansProjects/Mostruos/src/java/Persistencia/CriaturaJpaController.java</file>
         </group>
     </open-files>
 </project-private>

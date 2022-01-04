@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -20,25 +21,22 @@ import javax.persistence.OneToMany;
 public class Cabeza implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id_Cabeza;
+    private int idCabeza;
+    private String nombre;
+    private String descripcion;
     @OneToMany
     private ArrayList<Ojo> ojos;
-    private String nombre;
+    @ManyToOne
+    private Firma firma;
+    @ManyToOne
+    private Visibilidad visibilidad;
 
-    public int getId_Cabeza() {
-        return id_Cabeza;
+    public int getIdCabeza() {
+        return idCabeza;
     }
 
-    public void setId_Cabeza(int id_Cabeza) {
-        this.id_Cabeza = id_Cabeza;
-    }
-
-    public ArrayList<Ojo> getOjos() {
-        return ojos;
-    }
-
-    public void setOjos(ArrayList<Ojo> ojos) {
-        this.ojos = ojos;
+    public void setIdCabeza(int idCabeza) {
+        this.idCabeza = idCabeza;
     }
 
     public String getNombre() {
@@ -49,14 +47,49 @@ public class Cabeza implements Serializable {
         this.nombre = nombre;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public ArrayList<Ojo> getOjos() {
+        return ojos;
+    }
+
+    public void setOjos(ArrayList<Ojo> ojos) {
+        this.ojos = ojos;
+    }
+
+    public Firma getFirma() {
+        return firma;
+    }
+
+    public void setFirma(Firma firma) {
+        this.firma = firma;
+    }
+
+    public Visibilidad getVisibilidad() {
+        return visibilidad;
+    }
+
+    public void setVisibilidad(Visibilidad visibilidad) {
+        this.visibilidad = visibilidad;
+    }
+
     public Cabeza() {
     }
 
-    public Cabeza(int id_Cabeza, ArrayList<Ojo> ojos, String nombre) {
-        this.id_Cabeza = id_Cabeza;
-        this.ojos = ojos;
+    public Cabeza(int idCabeza, String nombre, String descripcion, ArrayList<Ojo> ojos, Firma firma, Visibilidad visibilidad) {
+        this.idCabeza = idCabeza;
         this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.ojos = ojos;
+        this.firma = firma;
+        this.visibilidad = visibilidad;
     }
-    
+
     
 }
