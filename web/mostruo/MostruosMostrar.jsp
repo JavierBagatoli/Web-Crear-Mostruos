@@ -150,7 +150,7 @@
                                     int i = 0;
                                     List<Criatura> listaCriaturas = control.traerCriaturas();
                                     for (Criatura criatura : listaCriaturas) {
-                                        String first = "";
+                                        String first = ""; //Creo varibale para poner en el css de la tabla
                                         i++;
                                         int resto = i % 4;
                                         Random r = new Random();
@@ -165,7 +165,7 @@
                                                 image = "../images/demo/gallery/2.jpg";
                                                 break;
                                         }
-                                        if (resto == 0) {
+                                        if (resto == 0) {//Es la primera posicion para el css?
                                             first = "first";
                                         }
 
@@ -173,7 +173,7 @@
                                 %>
                                 <li class="one_quarter <%=first%>">
                                     <form action="../SvMostruoBuscar" method="POST">
-                                        <input type="hidden" name="id" value="<%=criatura.getId_Criatura() %>">
+                                        <input type="hidden" name="id" value="<%=criatura.getIdCriatura() %>">
                                         <input class="imgOp" type="image" src=" <%=image%> " name="submit" alt="submit">
                                     </form>
                                     <a href="index.jsp"></a>

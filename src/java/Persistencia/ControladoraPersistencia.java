@@ -5,8 +5,8 @@
 package Persistencia;
 
 import Logica.*;
-
-import java.util.ArrayList;
+import Logica.Ambiente.Clima;
+import Logica.Ambiente.Planeta;
 import java.util.List;
 
 /**
@@ -20,6 +20,11 @@ public class ControladoraPersistencia {
     CriaturaJpaController criaturaJPA = new CriaturaJpaController();
     OjoJpaController ojoJPA = new OjoJpaController();
     PiernaJpaController piernaJPA = new PiernaJpaController();
+    PersonaJpaController personaJPA = new PersonaJpaController();
+    FirmaJpaController firmaJPA = new FirmaJpaController();
+    VisibilidadJpaController visibilidadJPA = new VisibilidadJpaController();
+    PlanetaJpaController planetaJPA = new PlanetaJpaController();
+    ClimaJpaController climaJPA = new ClimaJpaController();
     
     public void mostruoGeneradorRapido(Ojo ojo, Cabeza cabeza, Brazo brazo, Pierna pierna, Cuerpo cuerpo, Criatura criatura) {     
         ojoJPA.create(ojo);
@@ -97,5 +102,72 @@ public class ControladoraPersistencia {
     public void modificarCriatura(Criatura criatura) throws Exception {
         criaturaJPA.edit(criatura);
     }
+
+    public List<Cabeza> traerCabezas() {
+        return cabezaJPA.findCabezaEntities();
+    }
+
+    public List<Ojo> traerOjos() {
+        return ojoJPA.findOjoEntities();
+    }
+
+    public List<Cuerpo> traerCuerpos() {
+        return cuerpoJPA.findCuerpoEntities();
+    }
+
+    public List<Brazo> traerBrazos() {
+        return brazoJPA.findBrazoEntities();
+    }
     
+    public List<Pierna> traerPiernas() {
+        return piernaJPA.findPiernaEntities();
+    }
+
+    public void altaPersona(Persona persona, Firma firma) {
+        firmaJPA.create(firma);
+        personaJPA.create(persona);
+    }
+
+    public void crearPlaneta(Planeta planeta) {
+        planetaJPA.create(planeta);
+    }
+    
+    public List<Planeta> planetaTraer(){
+        return planetaJPA.findPlanetaEntities();
+    }
+    
+    //Metodos de Clima
+    public void crearClima(Clima clima){
+        climaJPA.create(clima);
+    }
+    
+    public Clima climaBusar(int idClima){
+        return climaJPA.findClima(idClima);
+    }
+    
+    public List<Clima> climaTraer(){
+        return climaJPA.findClimaEntities();
+    }
+    
+    //Metodos de las visibilidades
+    public void crearVisibilidaddes(){
+        Visibilidad visibilidadPublica = new Visibilidad();
+        Visibilidad visibilidadPrivada = new Visibilidad();
+        Visibilidad visibilidadProtegida = new Visibilidad();
+        visibilidadPublica.setVisibilidad("Publico");
+        visibilidadPrivada.setVisibilidad("Privado");
+        visibilidadProtegida.setVisibilidad("Protegido");
+        
+        visibilidadJPA.create(visibilidadPublica);
+        visibilidadJPA.create(visibilidadPrivada);
+        visibilidadJPA.create(visibilidadProtegida);
+    }
+    
+    public Visibilidad visibilidadBuscar(int idVisibilidad){
+        return visibilidadJPA.findVisibilidad(idVisibilidad);
+    }
+    
+    public List<Visibilidad> visibilidadTraer(){
+        return visibilidadJPA.findVisibilidadEntities();
+    }
 }

@@ -29,6 +29,7 @@ public class Persona implements Serializable {
     private String contra;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaNacimiento;
+    private Firma firma;
 
     public int getIdPersona() {
         return idPersona;
@@ -78,15 +79,24 @@ public class Persona implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public Firma getFirma() {
+        return firma;
+    }
+
+    public void setFirma(Firma firma) {
+        this.firma = firma;
+    }
+
     public Persona() {
     }
 
-    public Persona(int idPersona, String nombre, String apellido, String email, String contra, Date fechaNacimiento) {
+    public Persona(int idPersona, String nombre, String apellido, String email, String contra, Date fechaNacimiento, Firma firma) {
         this.idPersona = idPersona;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.contra = contra;
         this.fechaNacimiento = fechaNacimiento;
+        this.firma = firma;
     }   
 }

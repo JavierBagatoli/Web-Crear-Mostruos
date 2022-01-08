@@ -38,7 +38,7 @@
                     brazo1 = criatura.getCuerpo().getBrazos().get(0).getNombre();
                 }
                 if (criatura.getCuerpo().getPiernas().size() > 0){
-                    pierna1 = criatura.getCuerpo().getPiernas().get(0).getPierna();
+                    pierna1 = criatura.getCuerpo().getPiernas().get(0).getNombrePierna();
                 }
                 
         %>        
@@ -76,11 +76,11 @@
                         <div class="block clear textarea">
                             <div class="one_third first">
                                 <h4 class="one_third">Descripción: </h4>
-                                <h6 class="one_half"><%=criatura.getCuerpo().getPiernas().get(0).getPierna().getClass() + " " +criatura.getClass() %></h6>
+                                <h6 class="one_half"><%=criatura.getCuerpo().getPiernas().get(0).getNombrePierna().getClass() + " " +criatura.getClass() %></h6>
                             </div>
                         </div>
 
-                                <input type="hidden" name="id" value="<%=criatura.getId_Criatura() %>">
+                                <input type="hidden" name="id" value="<%=criatura.getIdCriatura() %>">
 
                         <div>
                             <input type="submit" name="submit" value="Editar">

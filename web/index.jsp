@@ -48,8 +48,8 @@ Licence URI: https://www.os-templates.com/template-terms
             <li><a href="pages/sidebar-right.html">Sidebar Right</a></li>
             <li><a href="pages/basic-grid.html">Basic Grid</a></li>
             <li><a href="pages/font-icons.html">Font Icons</a></li>
-            <li><a href="mostruo/MostruoAlta.jsp">Creacion rapida</a><li>
-            <li><a href="mostruo/MostruosMostrar.jsp">Mostrar coleccion</a><li>
+            <li><a href="Mostruo/MostruoAlta.jsp">Creacion rapida</a><li>
+            <li><a href="Mostruo/MostruosMostrar.jsp">Mostrar coleccion</a><li>
           </ul>
         </li>
       </ul>

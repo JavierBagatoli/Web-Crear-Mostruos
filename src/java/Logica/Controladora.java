@@ -4,8 +4,11 @@
  */
 package Logica;
 
+import Logica.Ambiente.Clima;
+import Logica.Ambiente.Planeta;
 import Persistencia.ControladoraPersistencia;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -130,5 +133,98 @@ public class Controladora {
         criatura.setCuerpo(cuerpo);
         
         controlPersis.modificarCriatura(criatura);
+    }
+    //Metodos de la cabeza
+    public List<Cabeza> traerCabezas(){
+        return controlPersis.traerCabezas();
+    }
+    
+    //Metodos del Ojo
+    public List<Ojo> traerOjos(){
+        return controlPersis.traerOjos();
+    }
+    //Metodos del Cuerpo
+    public List<Cuerpo> traerCuerpos(){
+        return controlPersis.traerCuerpos();
+    }
+    //Metodos de Brazo
+    
+    public List<Brazo> traerBrazos(){
+        return controlPersis.traerBrazos();
+    }
+    
+    //Metodos de Pierna
+    public List<Pierna> traerPiernas(){
+        return controlPersis.traerPiernas();
+    }
+
+    //Metodos de Persona
+    public void altaPersona(String nombreUsuario, String apellidoUsuario, String emailUsuario, String contraseniaUsuario, Date nacimientoUsuario, String firmaUsuario) {
+        Persona persona = new Persona();
+        
+        Firma firma = new Firma();
+        firma.setFirma(firmaUsuario);
+        
+        persona.setNombre(nombreUsuario);
+        persona.setApellido(apellidoUsuario);
+        persona.setEmail(emailUsuario);
+        persona.setContra(nombreUsuario);
+        persona.setFechaNacimiento(nacimientoUsuario);
+        persona.setFirma(firma);
+        
+        controlPersis.altaPersona(persona, firma);
+    }
+
+    public void crearPlaneta(String nombrePlaneta, String tamanioPlaneta, int gravedadPlaneta, 
+            String recursoPlaneta1, String recursoPlaneta2, String recursoPlaneta3, 
+            int visibilidadPlaneta) {
+        Planeta planeta = new Planeta();
+        planeta.setNombre(nombrePlaneta); 
+        planeta.setTamanio(tamanioPlaneta);
+        planeta.setGravedad(gravedadPlaneta);
+        ArrayList<String> recursosLista = new ArrayList<String>();
+        recursosLista.add(recursoPlaneta1);
+        recursosLista.add(recursoPlaneta2);
+        recursosLista.add(recursoPlaneta3);
+        planeta.setRecursosLista(recursosLista);
+        
+        Visibilidad visibilidadAux = controlPersis.visibilidadBuscar(visibilidadPlaneta);
+        planeta.setVisibilidad(visibilidadAux);
+        
+        controlPersis.crearPlaneta(planeta);
+    }
+
+    public void crearClima(String nombreClima, int intervaloTemp1, int intervaloTemp2,
+            int IntervaloHume1, int IntervaloHume2, int IntervaloPrep1, int IntervaloPrep2,
+            int IntervaloVien1, int IntervaloVien2, int visibilidadClima) {
+        Clima clima = new Clima();
+        clima.setNombre(nombreClima);
+        int vectorTemp[] = {intervaloTemp1, intervaloTemp2};
+        clima.setTemperatura(vectorTemp);
+        int vectorHume[] = {IntervaloHume1, IntervaloHume2};
+        clima.setHumedad(vectorHume);
+        int vectorPrep[] = {IntervaloPrep1,IntervaloPrep2};
+        clima.setPrecipitaciones(vectorPrep);
+        int vectorVien[] = {IntervaloVien1, IntervaloVien2};
+        clima.setViento(vectorVien);
+        
+        Visibilidad visibilidadAux = controlPersis.visibilidadBuscar(visibilidadClima);
+        clima.setVisibilidad(visibilidadAux);
+        
+        controlPersis.crearClima(clima);
+    }
+
+    public void crearClima(String nombreClima, int intervaloTemp1, int intervaloTemp2, 
+            int IntervaloHume1, int IntervaloHume2, int IntervaloPrep1, int IntervaloPrep2, 
+            int IntervaloVien1, int IntervaloVien2, int visibilidadClima, String planeta) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public List<Planeta> planetaTraer(){
+        return controlPersis.planetaTraer();
+    }
+    
+    public List<Visibilidad> visibilidadTraer(){
+        return controlPersis.visibilidadTraer();
     }
 }
