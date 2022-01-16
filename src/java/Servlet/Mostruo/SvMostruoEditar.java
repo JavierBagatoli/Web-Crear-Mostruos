@@ -32,21 +32,20 @@ public class SvMostruoEditar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
         String nombreMostruo = request.getParameter("nombreMostruo");
         String nombreCabeza = request.getParameter("nombreCabeza");
         String nombreOjo = request.getParameter("nombreOjo");
         String nombreCuerpo = request.getParameter("nombreCuerpo");
         String nombreBrazo = request.getParameter("nombreBrazo");
         String nombrePierna = request.getParameter("nombrePierna");
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("idCriatura"));
         
         try {
             control.mostruoEditar(id, nombreMostruo, nombreCabeza, nombreOjo, nombreCuerpo, nombreBrazo, nombrePierna);
         } catch (Exception ex) {
             Logger.getLogger(SvMostruoEditar.class.getName()).log(Level.SEVERE, null, ex);
         }
-        response.sendRedirect("./mostruo/MostruoMostrar.jsp");
+        response.sendRedirect("./Mostruo/MostruoMostrar.jsp");
                 
     }
 

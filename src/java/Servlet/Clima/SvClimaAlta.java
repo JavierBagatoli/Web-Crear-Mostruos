@@ -40,8 +40,8 @@ public class SvClimaAlta extends HttpServlet {
         String nombreClima = request.getParameter("nombreClima");
         int intervaloTemp1 = Integer.parseInt(request.getParameter("IntervaloTemp1"));
         int intervaloTemp2 = Integer.parseInt(request.getParameter("IntervaloTemp2"));
-        int IntervaloHume1 = Integer.parseInt(request.getParameter("IntervaloTemp1"));
-        int IntervaloHume2 = Integer.parseInt(request.getParameter("IntervaloTemp2"));
+        int IntervaloHume1 = Integer.parseInt(request.getParameter("IntervaloHume1"));
+        int IntervaloHume2 = Integer.parseInt(request.getParameter("IntervaloHume2"));
         int IntervaloPrep1 = Integer.parseInt(request.getParameter("IntervaloPrep1"));
         int IntervaloPrep2 = Integer.parseInt(request.getParameter("IntervaloPrep2"));
         int IntervaloVien1 = Integer.parseInt(request.getParameter("IntervaloVien1"));
@@ -51,9 +51,9 @@ public class SvClimaAlta extends HttpServlet {
         //Parametros para Crear planeta
         String nombrePlaneta = request.getParameter("nombrePlaneta");
         String tamanioPlaneta = request.getParameter("tamanioPlaneta");
-        int gravedadPlaneta = 0;
+        float gravedadPlaneta = (float) 9.8 ;
         try{
-            gravedadPlaneta = Integer.parseInt(request.getParameter("gravedadPlaneta"));
+            gravedadPlaneta = Float.valueOf(request.getParameter("gravedadPlaneta"));
         }catch(NullPointerException e ){
         }
         String recursoPlaneta1 = request.getParameter("recursoPlaneta1");
@@ -62,10 +62,17 @@ public class SvClimaAlta extends HttpServlet {
         int visibilidadPlaneta = Integer.parseInt(request.getParameter("visibilidadPlaneta"));
         //Enviar datos
         if ((nombrePlaneta != null) && (tamanioPlaneta != null) && (gravedadPlaneta != 0 )){
-            control.crearPlaneta(nombrePlaneta, tamanioPlaneta, gravedadPlaneta, recursoPlaneta1, recursoPlaneta2, recursoPlaneta3, visibilidadPlaneta);
-            control.crearClima(nombreClima, intervaloTemp1, intervaloTemp2, IntervaloHume1, IntervaloHume2, IntervaloPrep1, IntervaloPrep2, IntervaloVien1, IntervaloVien2, visibilidadClima);
+            control.crearPlaneta(nombrePlaneta, tamanioPlaneta, gravedadPlaneta,
+                recursoPlaneta1, recursoPlaneta2, recursoPlaneta3, visibilidadPlaneta);
+            
+            control.crearClima(nombreClima, intervaloTemp1, intervaloTemp2, IntervaloHume1,
+                    IntervaloHume2, IntervaloPrep1, IntervaloPrep2, IntervaloVien1,
+                    IntervaloVien2, visibilidadClima);
+            
         }else{
-            control.crearClima(nombreClima, intervaloTemp1, intervaloTemp2, IntervaloHume1, IntervaloHume2, IntervaloPrep1, IntervaloPrep2, IntervaloVien1, IntervaloVien2, visibilidadClima, planeta);
+            control.crearClima(nombreClima, intervaloTemp1, intervaloTemp2,
+                    IntervaloHume1, IntervaloHume2, IntervaloPrep1, IntervaloPrep2,
+                    IntervaloVien1, IntervaloVien2, visibilidadClima, planeta);
         } 
     }
 

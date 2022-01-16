@@ -18,24 +18,46 @@ import java.util.List;
 public class Controladora {
     ControladoraPersistencia controlPersis = new ControladoraPersistencia();
     
-    public void mostruoGeneradorRapido(String nombreMostruo, String nombreCabeza, String nombreOjo, String nombreCuerpo, String nombreBrazo, String nombrePierna) {
+    public void mostruoGeneradorRapido(String nombreMostruo, String nombreCabeza,
+            String nombreOjo, String nombreCuerpo, String nombreBrazo,
+            String nombrePierna, int idFirmaUsuario) {
+        List<Visibilidad> visibilidadesLista = controlPersis.visibilidadTraer();
+        Visibilidad visibilidadPublica = null;
+        for(Visibilidad visibilidad : visibilidadesLista){
+            if (visibilidad.getVisibilidad().equals("Publico")){
+                visibilidadPublica = visibilidad;
+            }
+        }
+        Firma firma = firmaBuscar(idFirmaUsuario);
+        
         Ojo ojo = new Ojo();
         ojo.setNombre(nombreOjo);
+        ojo.setFirma(firma);
+        ojo.setVisibilidad(visibilidadPublica);
         
         Cabeza cabeza = new Cabeza();
         cabeza.setNombre(nombreCabeza);
+        cabeza.setFirma(firma);
+        cabeza.setVisibilidad(visibilidadPublica);
+        
         ArrayList<Ojo> ojos = new ArrayList<Ojo>();
         ojos.add(ojo);
         cabeza.setOjos(ojos);
         
         Brazo brazo = new Brazo();
         brazo.setNombre(nombreBrazo);
+        brazo.setFirma(firma);
+        brazo.setVisibilidad(visibilidadPublica);
 
         Pierna pierna = new Pierna();
         pierna.setNombrePierna(nombrePierna);
+        pierna.setFirma(firma);
+        pierna.setVisibilidad(visibilidadPublica);
         
         Cuerpo cuerpo = new Cuerpo();
         cuerpo.setNombre(nombreCuerpo);
+        cuerpo.setFirma(firma);
+        cuerpo.setVisibilidad(visibilidadPublica);
         ArrayList<Brazo> brazos = new ArrayList<Brazo>();
         brazos.add(brazo);
         ArrayList<Pierna> piernas = new ArrayList<Pierna>();
@@ -47,6 +69,8 @@ public class Controladora {
         criatura.setNombre(nombreMostruo);
         criatura.setCabeza(cabeza);
         criatura.setCuerpo(cuerpo);
+        criatura.setFirma(firma);
+        criatura.setVisibildiad(visibilidadPublica); //Corregir error de ortografia
         
         controlPersis.mostruoGeneradorRapido(ojo, cabeza, brazo, pierna, cuerpo, criatura);
     }
@@ -159,23 +183,40 @@ public class Controladora {
     }
 
     //Metodos de Persona
-    public void altaPersona(String nombreUsuario, String apellidoUsuario, String emailUsuario, String contraseniaUsuario, Date nacimientoUsuario, String firmaUsuario) {
-        Persona persona = new Persona();
+    public void altaPersona(String nombreUsuario, String apellidoUsuario, 
+            String emailUsuario, String contraseniaUsuario, Date nacimientoUsuario, 
+            String firmaUsuario) {
         
         Firma firma = new Firma();
         firma.setFirma(firmaUsuario);
         
+        Persona persona = new Persona();
+        
         persona.setNombre(nombreUsuario);
         persona.setApellido(apellidoUsuario);
         persona.setEmail(emailUsuario);
-        persona.setContra(nombreUsuario);
+        persona.setContra(contraseniaUsuario);
         persona.setFechaNacimiento(nacimientoUsuario);
         persona.setFirma(firma);
-        
+                 
         controlPersis.altaPersona(persona, firma);
     }
+    
+    public int personaLogin(String emailUsuario, String passwordUsuario) {
+        int idUsuario = -1; //Usuario no encontrado
+        List<Persona> personasLista = controlPersis.personaTraer();
+        for(Persona persona : personasLista){
+            if (persona.getEmail().equals(emailUsuario) && persona.getContra().equals(passwordUsuario)){
+                return persona.getIdPersona();
+            }
+        }
+        return idUsuario;
+    }
+    public Persona personaBuscar(int idPersona){
+        return controlPersis.personaBuscar(idPersona);
+    }
 
-    public void crearPlaneta(String nombrePlaneta, String tamanioPlaneta, int gravedadPlaneta, 
+    public void crearPlaneta(String nombrePlaneta, String tamanioPlaneta, float gravedadPlaneta, 
             String recursoPlaneta1, String recursoPlaneta2, String recursoPlaneta3, 
             int visibilidadPlaneta) {
         Planeta planeta = new Planeta();
@@ -223,8 +264,12 @@ public class Controladora {
     public List<Planeta> planetaTraer(){
         return controlPersis.planetaTraer();
     }
-    
+            
     public List<Visibilidad> visibilidadTraer(){
         return controlPersis.visibilidadTraer();
+    }
+
+    private Firma firmaBuscar(int idFirmaUsuario) {
+        return controlPersis.firmaBuscar(idFirmaUsuario);
     }
 }

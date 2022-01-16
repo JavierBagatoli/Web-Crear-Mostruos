@@ -25,6 +25,36 @@
         </style>
     </head>
     <body id="top" >
+        <div class="wrapper row1">
+            <header id="header" class="hoc clear">
+                <div id="logo" class="fl_left"> 
+                    <!-- ################################################################################################ -->
+                    <h1><a href="index.html">GenMos</a></h1>
+                    <!-- ################################################################################################ -->
+                </div>
+                <nav id="mainav" class="fl_right"> 
+                    <!-- ################################################################################################ -->
+                    <ul class="clear">
+                        <li><a class="drop" href="#">Galeria</a>
+                            <ul>
+                                <li><a href="Mostruo/MostruosMostrar.jsp">Mostruos</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="drop" href="#">Creacion</a>
+                            <ul>
+                                <li><a href="pages/font-icons.html">Font Icons</a></li>
+                                <li><a href="Mostruo/MostruoAlta.jsp">Creacion rapida</a><li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- ################################################################################################ -->
+                </nav>
+            </header>
+        </div>
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+        
         <% HttpSession misession = request.getSession();
             Criatura criatura = (Criatura) misession.getAttribute("criatura");
             {

@@ -40,8 +40,9 @@ public class SvMostruoAlta extends HttpServlet {
         String nombreCuerpo = request.getParameter("nombreCuerpo");
         String nombreBrazo = request.getParameter("nombreBrazo");
         String nombrePierna = request.getParameter("nombrePierna");
+        int idFirmaUsuario = Integer.parseInt(request.getParameter("firmaUsuario"));
         
-        control.mostruoGeneradorRapido(nombreMostruo, nombreCabeza, nombreOjo, nombreCuerpo, nombreBrazo, nombrePierna);
+        control.mostruoGeneradorRapido(nombreMostruo, nombreCabeza, nombreOjo, nombreCuerpo, nombreBrazo, nombrePierna, idFirmaUsuario);
         response.sendRedirect("./index.jsp");
     }
 

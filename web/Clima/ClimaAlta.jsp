@@ -131,9 +131,11 @@
                                 <label for="visibilidadClima">Visibilidad: <span>*</span></label>
                                 <div class="one_third first flex ">
                                     <select name="visibilidadClima" id="visibilidadClima">
-                                        <option value="visibilidadPublico">Publico</option> <!-- Cualquier usuario puede encontrarlo -->
-                                        <option value="visibilidadPrivado">Privado</option> <!-- Solo el creado puede verlo -->
-                                        <option value="visibilidadProtegido">Protegido</option> <!-- Solo aquien comporta el creador puede verlo -->
+                                        <%for(Visibilidad visibilidad : visibilidadesLista){
+                                            
+                                            %>
+                                            <option value="<%=visibilidad.getIdVisibilidad() %>"><%=visibilidad.getVisibilidad() %></option> 
+                                            <%} %>
                                     </select>
                                 </div>
                             </div>
@@ -204,9 +206,11 @@
                                     <label for="visibilidadPlaneta">Visibilidad: <span>*</span></label>
                                     <div class="one_third first flex">
                                         <select name="visibilidadPlaneta" id="visibilidadPlaneta">
-                                            <option value="visibilidadPublico">Publico</option> <!-- Cualquier usuario puede encontrarlo -->
-                                            <option value="visibilidadPrivado">Privado</option> <!-- Solo el creado puede verlo -->
-                                            <option value="visibilidadProtegido">Protegido</option> <!-- Solo aquien comporta el creador puede verlo -->
+                                            <%for(Visibilidad visibilidad : visibilidadesLista){
+                                            
+                                            %>
+                                            <option value="<%=visibilidad.getIdVisibilidad() %>"><%=visibilidad.getVisibilidad() %></option> 
+                                            <%} %>
                                         </select>
                                     </div>
                                 </div>

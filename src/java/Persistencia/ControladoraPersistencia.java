@@ -150,7 +150,7 @@ public class ControladoraPersistencia {
     }
     
     //Metodos de las visibilidades
-    public void crearVisibilidaddes(){
+    public void crearVisibilidades(){
         Visibilidad visibilidadPublica = new Visibilidad();
         Visibilidad visibilidadPrivada = new Visibilidad();
         Visibilidad visibilidadProtegida = new Visibilidad();
@@ -164,10 +164,30 @@ public class ControladoraPersistencia {
     }
     
     public Visibilidad visibilidadBuscar(int idVisibilidad){
+        List<Visibilidad> visibilidadLista = visibilidadJPA.findVisibilidadEntities();
+        if (visibilidadLista.isEmpty()){
+                crearVisibilidades();}
+        
         return visibilidadJPA.findVisibilidad(idVisibilidad);
     }
     
     public List<Visibilidad> visibilidadTraer(){
+        List<Visibilidad> visibilidadLista = visibilidadJPA.findVisibilidadEntities();
+        if (visibilidadLista.isEmpty()){
+                crearVisibilidades();}
+        
         return visibilidadJPA.findVisibilidadEntities();
+    }
+
+    public List<Persona> personaTraer() {
+        return personaJPA.findPersonaEntities();
+    }
+
+    public Persona personaBuscar(int idPersona) {
+        return personaJPA.findPersona(idPersona);
+    }
+
+    public Firma firmaBuscar(int idFirmaUsuario) {
+        return firmaJPA.findFirma(idFirmaUsuario);
     }
 }

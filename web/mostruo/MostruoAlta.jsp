@@ -4,6 +4,8 @@
     Author     : JavW11trial
 --%>
 
+<%@page import="Logica.Persona"%>
+<%@page import="Logica.Controladora"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -30,6 +32,35 @@
         </style>
     </head>
     <body id="top" >
+        <div class="wrapper row1">
+            <header id="header" class="hoc clear">
+                <div id="logo" class="fl_left"> 
+                    <!-- ################################################################################################ -->
+                    <h1><a href="index.html">GenMos</a></h1>
+                    <!-- ################################################################################################ -->
+                </div>
+                <nav id="mainav" class="fl_right"> 
+                    <!-- ################################################################################################ -->
+                    <ul class="clear">
+                        <li><a class="drop" href="#">Galeria</a>
+                            <ul>
+                                <li><a href="Mostruo/MostruosMostrar.jsp">Mostruos</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="drop" href="#">Creacion</a>
+                            <ul>
+                                <li><a href="pages/font-icons.html">Font Icons</a></li>
+                                <li><a href="Mostruo/MostruoAlta.jsp">Creacion rapida</a><li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- ################################################################################################ -->
+                </nav>
+            </header>
+        </div>
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
         <h1 class="titulo">Nueva Criatura</h1>
         <div class="contenedor">
             <div class="wrapper row4 contenedor">
@@ -63,12 +94,21 @@
                             <label for="nombrePierna">Pierna: <span>*</span></label>
                             <input type="text" name="nombrePierna" id="nombrePierna" value="" size="22" required>
                         </div>                
-
+                        
+                        
                         <div class="block clear textarea">
                             <label for="descripcion">Descripción: </label>
                             <textarea class="" name="descripcion" id="descripcion" rows="10"></textarea>
                         </div>
+                        
+                        <% 
+                            HttpSession misession = request.getSession();
+                            Controladora control = new Controladora();
+                            int idUsuario = (int) misession.getAttribute("idUsuario");
+                            Persona usuario = control.personaBuscar(idUsuario);
 
+                        %>
+                        <input type="hidden" name="firmaUsuario" value="<%=usuario.getFirma().getIdFirma() %>">
                         <div>
                             <input type="submit" name="submit" value="Crear">
                             &nbsp;

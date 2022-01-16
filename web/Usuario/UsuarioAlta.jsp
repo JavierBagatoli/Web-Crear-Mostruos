@@ -95,7 +95,7 @@
                             <input type="text" name="firmaUsuario" id="firmaUsuario" value="" size="22" required>
                         </div>                
 
-                        <div>
+                        <div class="first">
                             <input type="submit" name="submit" value="Crear">
                             &nbsp;
                             <input type="reset" name="reset" value="Reset Form">

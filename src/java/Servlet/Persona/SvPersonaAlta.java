@@ -1,6 +1,7 @@
 package Servlet.Persona;
 
 import Logica.Controladora;
+import Logica.Firma;
 import Logica.Persona;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -50,14 +51,9 @@ public class SvPersonaAlta extends HttpServlet {
             Logger.getLogger(SvPersonaAlta.class.getName()).log(Level.SEVERE, null, ex);
         }
         String firmaUsuario = request.getParameter("firmaUsuario");
-        
-        Persona usuario = new Persona();
-        usuario.setNombre(nombreUsuario);
-        usuario.setApellido(apellidoUsuario);
-        usuario.setEmail(emailUsuario);
-        usuario.setContra(contraseniaUsuario);
-        usuario.setFechaNacimiento(nacimientoUsuario);
-        
+        if (firmaUsuario == null){
+            firmaUsuario = "Anonimo";
+        }        
         control.altaPersona(nombreUsuario, apellidoUsuario, emailUsuario, contraseniaUsuario, nacimientoUsuario,firmaUsuario);
         response.sendRedirect("index.jsp");
         
