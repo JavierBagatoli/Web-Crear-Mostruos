@@ -10,7 +10,7 @@ _El mismo consiste en permitir a los usuarios crear una criatura con unas pocas 
 
 **2:** _El usuario puede editar una criatura en especifico_. ✔️
 
-**2.1:** _Arreglar formato de para la busqueda (agregar input hidden ID de cada componente)_.
+**2.1:** _Arreglar formato de para la busqueda (agregar input hidden ID de cada componente)_. ✔️
 
 **2.2:** _Atributos de las criaturas expandidos_ ✔️
 
