@@ -14,7 +14,7 @@ _El mismo consiste en permitir a los usuarios crear una criatura con unas pocas 
 
 **2.2:** _Atributos de las criaturas expandidos_ ✔️
 
-**3:** _El usuario puede crear una criatura y dejar su firma_. 
+**3:** _El usuario puede crear una criatura y dejar su firma_. ✔️
 
 **4:** _El usuario puede ver sus criaturas en especifico_.
 
