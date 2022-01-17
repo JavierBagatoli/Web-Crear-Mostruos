@@ -16,7 +16,7 @@ _El mismo consiste en permitir a los usuarios crear una criatura con unas pocas 
 
 **3:** _El usuario puede crear una criatura y dejar su firma_. ✔️
 
-**4:** _El usuario puede ver sus criaturas en especifico_.
+**4:** _El usuario puede ver sus criaturas en especifico_. ✔️
 
 **5:** _Reforma de las criaturas al expandir su creacion y descripciones de partes (Agregar indice de ferosidad segun autor, boca, nariz y oidos faltan)_.
 
