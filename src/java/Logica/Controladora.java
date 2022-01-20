@@ -19,8 +19,11 @@ public class Controladora {
     ControladoraPersistencia controlPersis = new ControladoraPersistencia();
     
     public void mostruoGeneradorRapido(String nombreMostruo, String nombreCabeza,
-            String nombreOjo, String nombreCuerpo, String nombreBrazo,
-            String nombrePierna, int idFirmaUsuario) {
+            String nombreOjo1, String nombreOjo2, String nombreOjo3, String nombreCuerpo,
+            String nombreBrazo1, String nombreBrazo2, String nombreBrazo3,
+            String nombrePierna1, String nombrePierna2, String nombrePierna3,
+            int idFirmaUsuario) {
+        
         List<Visibilidad> visibilidadesLista = controlPersis.visibilidadTraer();
         Visibilidad visibilidadPublica = null;
         for(Visibilidad visibilidad : visibilidadesLista){
@@ -30,10 +33,18 @@ public class Controladora {
         }
         Firma firma = firmaBuscar(idFirmaUsuario);
         
-        Ojo ojo = new Ojo();
-        ojo.setNombre(nombreOjo);
-        ojo.setFirma(firma);
-        ojo.setVisibilidad(visibilidadPublica);
+        Ojo ojo1 = new Ojo();
+        ojo1.setNombre(nombreOjo1);
+        ojo1.setFirma(firma);
+        ojo1.setVisibilidad(visibilidadPublica);
+        Ojo ojo2 = new Ojo();
+        ojo2.setNombre(nombreOjo1);
+        ojo2.setFirma(firma);
+        ojo2.setVisibilidad(visibilidadPublica);
+        Ojo ojo3 = new Ojo();
+        ojo3.setNombre(nombreOjo1);
+        ojo3.setFirma(firma);
+        ojo3.setVisibilidad(visibilidadPublica);
         
         Cabeza cabeza = new Cabeza();
         cabeza.setNombre(nombreCabeza);
@@ -41,27 +52,45 @@ public class Controladora {
         cabeza.setVisibilidad(visibilidadPublica);
         
         ArrayList<Ojo> ojos = new ArrayList<Ojo>();
-        ojos.add(ojo);
+        ojos.add(ojo1);
+        ojos.add(ojo2);
+        ojos.add(ojo3);
         cabeza.setOjos(ojos);
         
-        Brazo brazo = new Brazo();
-        brazo.setNombre(nombreBrazo);
-        brazo.setFirma(firma);
-        brazo.setVisibilidad(visibilidadPublica);
+        Brazo brazo1 = new Brazo();
+        brazo1.setNombre(nombreBrazo1);
+        brazo1.setFirma(firma);
+        brazo1.setVisibilidad(visibilidadPublica);
+        Brazo brazo2 = new Brazo();
+        brazo2.setNombre(nombreBrazo2);
+        brazo2.setFirma(firma);
+        brazo2.setVisibilidad(visibilidadPublica);
+        Brazo brazo3 = new Brazo();
+        brazo3.setNombre(nombreBrazo3);
+        brazo3.setFirma(firma);
+        brazo3.setVisibilidad(visibilidadPublica);
 
-        Pierna pierna = new Pierna();
-        pierna.setNombrePierna(nombrePierna);
-        pierna.setFirma(firma);
-        pierna.setVisibilidad(visibilidadPublica);
+        Pierna pierna1 = new Pierna();
+        pierna1.setNombrePierna(nombrePierna1);
+        pierna1.setFirma(firma);
+        pierna1.setVisibilidad(visibilidadPublica);
+        Pierna pierna2 = new Pierna();
+        pierna2.setNombrePierna(nombrePierna2);
+        pierna2.setFirma(firma);
+        pierna2.setVisibilidad(visibilidadPublica);
+        Pierna pierna3 = new Pierna();
+        pierna3.setNombrePierna(nombrePierna3);
+        pierna3.setFirma(firma);
+        pierna3.setVisibilidad(visibilidadPublica);
         
         Cuerpo cuerpo = new Cuerpo();
         cuerpo.setNombre(nombreCuerpo);
         cuerpo.setFirma(firma);
         cuerpo.setVisibilidad(visibilidadPublica);
         ArrayList<Brazo> brazos = new ArrayList<Brazo>();
-        brazos.add(brazo);
+        brazos.add(brazo1);
         ArrayList<Pierna> piernas = new ArrayList<Pierna>();
-        piernas.add(pierna);
+        piernas.add(pierna1);
         cuerpo.setBrazos(brazos);
         cuerpo.setPiernas(piernas);
         
@@ -70,9 +99,11 @@ public class Controladora {
         criatura.setCabeza(cabeza);
         criatura.setCuerpo(cuerpo);
         criatura.setFirma(firma);
-        criatura.setVisibildiad(visibilidadPublica); //Corregir error de ortografia
+        criatura.setVisibilidad(visibilidadPublica); //Corregir error de ortografia
+        ArrayList<Criatura> presaDe = new ArrayList<>();
+        criatura.setPresaDe(presaDe);
         
-        controlPersis.mostruoGeneradorRapido(ojo, cabeza, brazo, pierna, cuerpo, criatura);
+        controlPersis.mostruoGeneradorRapido(ojo1, ojo2, ojo3, cabeza, brazo1, brazo2, brazo3, pierna1, pierna2, pierna3, cuerpo, criatura);
     }
     
     public List<Criatura> traerCriaturas(){
@@ -88,12 +119,32 @@ public class Controladora {
         return null;
     }
 
-    public void mostruoEditar(int id, String nombreMostruo, String nombreCabeza, String nombreOjo, String nombreCuerpo, String nombreBrazo, String nombrePierna) throws Exception {
+    public void mostruoEditar(int id, String nombreMostruo, int cabezaCriatura,
+            int ojoCriatura, int cuerpoCriatura, int brazoCriatura,
+            int piernaCriatura, int depredador1) throws Exception {
         Criatura criatura = controlPersis.buscarCriatura(id);
         criatura.setNombre(nombreMostruo);
         
+        Brazo brazo = controlPersis.brazoBuscar(brazoCriatura);
+        Pierna pierna = controlPersis.piernaBuscar(piernaCriatura);
+        Cuerpo cuerpo = controlPersis.cuerpoBuscar(cuerpoCriatura);
+        Ojo ojo = controlPersis.ojoBuscar(ojoCriatura);
+        Cabeza cabeza = controlPersis.cabezaBuscar(cabezaCriatura);
+        
+        
+        
         ArrayList<Ojo> listaOjos = new ArrayList<Ojo>();
-        Ojo ojo;
+        listaOjos.add(ojo);
+        cabeza.setOjos(listaOjos);
+        
+        ArrayList<Brazo> listaBrazos = new ArrayList<Brazo>();
+        listaBrazos.add(brazo);
+        ArrayList<Pierna> listaPiernas = new ArrayList<Pierna>();
+        listaPiernas.add(pierna);
+        cuerpo.setBrazos(listaBrazos);
+        cuerpo.setPiernas(listaPiernas);
+        
+        /*Ojo ojo;
         Ojo ojoBuscado = controlPersis.buscarOjo(nombreOjo);
         if (ojoBuscado != null){
             ojo = ojoBuscado;
@@ -152,9 +203,15 @@ public class Controladora {
             cuerpo.setBrazos(listaBrazos);
             cuerpo.setPiernas(listaPiernas);
         }
-        
+        */
         criatura.setCabeza(cabeza);
         criatura.setCuerpo(cuerpo);
+        
+        
+        Criatura depredador01 = controlPersis.buscarCriatura(depredador1);
+        ArrayList<Criatura> presaDe = new ArrayList<>();
+        presaDe.add(depredador01);
+        criatura.setPresaDe(presaDe);
         
         controlPersis.modificarCriatura(criatura);
     }
@@ -271,5 +328,157 @@ public class Controladora {
 
     private Firma firmaBuscar(int idFirmaUsuario) {
         return controlPersis.firmaBuscar(idFirmaUsuario);
+    }
+
+    public void MostruoAlta(String nombreMostruo, String descripcionCriatura,
+            String nombreCabeza, short cantidadCabezas, String descripcionCabeza, 
+            String nombreOjo1, short cantidadOjos1, String descripcionOjo1, 
+            String nombreOjo2, short cantidadOjos2, String descripcionOjo2, 
+            String nombreOjo3, short cantidadOjos3, String descripcionOjo3, 
+            String nombreCuerpo, String descripcionCuerpo, 
+            String nombreBrazo1, short cantidadBrazos1, String descripcionBrazo1, 
+            String nombreBrazo2, short cantidadBrazos2, String descripcionBrazo2, 
+            String nombreBrazo3, short cantidadBrazos3, String descripcionBrazo3, 
+            String nombrePierna1, short cantidadPiernas1, String descripcionPierna1, 
+            String nombrePierna2, short cantidadPiernas2, String descripcionPierna2, 
+            String nombrePierna3, short cantidadPiernas3, String descripcionPierna3, 
+            int idFirmaUsuario) {
+        
+        List<Visibilidad> visibilidadesLista = controlPersis.visibilidadTraer();
+        Visibilidad visibilidadPublica = null;
+        for(Visibilidad visibilidad : visibilidadesLista){
+            if (visibilidad.getVisibilidad().equals("Publico")){
+                visibilidadPublica = visibilidad;
+            }
+        }
+        
+        Firma firma = controlPersis.firmaBuscar(idFirmaUsuario);
+        
+        Criatura criatura = new Criatura();
+        criatura.setNombre(nombreMostruo);
+        criatura.setDescripcion(descripcionCriatura);
+        criatura.setCantidadCabezas(cantidadCabezas);
+        criatura.setVisibilidad(visibilidadPublica);
+        
+        ArrayList<Ojo> listaOjos = new ArrayList<>();
+        
+        Ojo ojo1 = new Ojo();
+        ojo1.setNombre(nombreOjo1);
+        ojo1.setDescripcion(descripcionOjo1);
+        ojo1.setFirma(firma);
+        ojo1.setVisibilidad(visibilidadPublica);
+        listaOjos.add(ojo1);
+        controlPersis.ojoAlta(ojo1);
+        
+        if (nombreOjo2 != null){
+        Ojo ojo2 = new Ojo();
+        ojo2.setNombre(nombreOjo2);
+        ojo2.setDescripcion(descripcionOjo2);
+        ojo2.setFirma(firma);
+        ojo2.setVisibilidad(visibilidadPublica);
+        listaOjos.add(ojo2);
+        controlPersis.ojoAlta(ojo2);
+        }
+        
+        if (nombreOjo3 != null){
+        Ojo ojo3 = new Ojo();
+        ojo3.setNombre(nombreOjo3);
+        ojo3.setDescripcion(descripcionOjo3);
+        ojo3.setFirma(firma);
+        ojo3.setVisibilidad(visibilidadPublica);
+        listaOjos.add(ojo3);
+        controlPersis.ojoAlta(ojo3);
+        }
+        
+        Cabeza cabeza = new Cabeza();
+        cabeza.setNombre(nombreCabeza);
+        cabeza.setDescripcion(descripcionCabeza);
+        cabeza.setCantidadOjos1(cantidadOjos1);
+        if (nombreOjo2 != null){    cabeza.setCantidadOjos2(cantidadOjos2);}
+        if (nombreOjo3 != null){    cabeza.setCantidadOjos3(cantidadOjos3);}
+        cabeza.setOjos(listaOjos);
+        cabeza.setFirma(firma);
+        cabeza.setVisibilidad(visibilidadPublica);
+        controlPersis.cabezaAlta(cabeza);
+        
+        criatura.setCantidadCabezas(cantidadCabezas);
+        criatura.setCabeza(cabeza);
+        
+        ArrayList<Brazo> listaBrazos = new ArrayList<>();
+        
+        Brazo brazo1 = new Brazo();
+        brazo1.setNombre(nombreBrazo1);
+        brazo1.setDescripcion(descripcionBrazo1);
+        brazo1.setFirma(firma);
+        brazo1.setVisibilidad(visibilidadPublica);
+        listaBrazos.add(brazo1);
+        controlPersis.brazoAlta(brazo1);
+        
+        if (nombreBrazo2 != null){
+            Brazo brazo2 = new Brazo();
+            brazo2.setNombre(nombreBrazo2);
+            brazo2.setDescripcion(descripcionBrazo2);
+            brazo2.setFirma(firma);
+            brazo2.setVisibilidad(visibilidadPublica);
+            listaBrazos.add(brazo2);
+            controlPersis.brazoAlta(brazo2);
+        }
+        if (nombreBrazo3 != null){
+            Brazo brazo3 = new Brazo();
+            brazo3.setNombre(nombreBrazo3);
+            brazo3.setDescripcion(descripcionBrazo3);
+            brazo3.setFirma(firma);
+            brazo3.setVisibilidad(visibilidadPublica);
+            listaBrazos.add(brazo3);
+            controlPersis.brazoAlta(brazo3);
+        }
+        
+        ArrayList<Pierna> listaPiernas = new ArrayList<>();
+        
+        Pierna pierna1 = new Pierna();
+        pierna1.setNombrePierna(nombrePierna1);
+        pierna1.setDescripcion(descripcionPierna1);
+        pierna1.setFirma(firma);
+        pierna1.setVisibilidad(visibilidadPublica);
+        listaPiernas.add(pierna1);
+        controlPersis.piernaAlta(pierna1);
+        
+        if(nombrePierna2 != null){
+            Pierna pierna2 = new Pierna();
+            pierna2.setNombrePierna(nombrePierna2);
+            pierna2.setDescripcion(descripcionPierna2);
+            pierna2.setFirma(firma);
+            pierna2.setVisibilidad(visibilidadPublica);
+            listaPiernas.add(pierna2);
+            controlPersis.piernaAlta(pierna2);
+        }
+        if (nombrePierna3 != null){
+        Pierna pierna3 = new Pierna();
+            pierna3.setNombrePierna(nombrePierna3);
+            pierna3.setDescripcion(descripcionPierna3);
+            pierna3.setFirma(firma);
+            pierna3.setVisibilidad(visibilidadPublica);
+            listaPiernas.add(pierna3);
+            controlPersis.piernaAlta(pierna3);
+        }
+        
+        Cuerpo cuerpo = new Cuerpo();
+        cuerpo.setDescripcion(descripcionCuerpo);
+        cuerpo.setBrazos(listaBrazos);
+        cuerpo.setCantidadBrazos1(cantidadBrazos1);
+        cuerpo.setCantidadBrazos2(cantidadBrazos2);
+        cuerpo.setCantidadBrazos3(cantidadBrazos3);
+        cuerpo.setPiernas(listaPiernas);
+        cuerpo.setCantidadPiernas1(cantidadPiernas1);
+        cuerpo.setCantidadPiernas2(cantidadPiernas2);
+        cuerpo.setCantidadPiernas3(cantidadPiernas3);
+        cuerpo.setFirma(firma);
+        cuerpo.setVisibilidad(visibilidadPublica);
+        controlPersis.cuerpoAlta(cuerpo);
+        
+        criatura.setCuerpo(cuerpo);
+        
+        criatura.setFirma(firma); 
+        controlPersis.criaturaAlta(criatura);
     }
 }

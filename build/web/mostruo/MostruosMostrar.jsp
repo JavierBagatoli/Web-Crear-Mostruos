@@ -37,11 +37,19 @@
         </style>
     </head>
     <body id="top">
+        <%
+        HttpSession misession = request.getSession();
+        try{
+            int idPersona = (int) misession.getAttribute("idUsuario");
+        }catch(NullPointerException e){
+            response.sendRedirect("./Usuario/UsuarioLogin.jsp");
+        }
+        %>
         <div class="wrapper row1">
             <header id="header" class="hoc clear">
                 <div id="logo" class="fl_left"> 
                     <!-- ################################################################################################ -->
-                    <h1><a href="index.html">GenMos</a></h1>
+                    <h1><a href="../index.html">GenMos</a></h1>
                     <!-- ################################################################################################ -->
                 </div>
                 <nav id="mainav" class="fl_right"> 
@@ -49,17 +57,16 @@
                     <ul class="clear">
                         <li><a class="drop" href="#">Galeria</a>
                             <ul>
-                                <li><a href="Mostruo/MostruosMostrar.jsp">Mostruos</a></li>
+                                <li><a href="./MiMostruosMostrar.jsp">Mis Mostruos</a></li>
+                                <li><a href="./MostruoCadenaTrofica.jsp">Mis Cadenas Troficas</a></li>
                             </ul>
                         </li>
                         <li><a class="drop" href="#">Creacion</a>
                             <ul>
-                                <li><a href="pages/font-icons.html">Font Icons</a></li>
-                                <li><a href="Mostruo/MostruoAlta.jsp">Creacion rapida</a><li>
+                                <li><a href="../Clima/ClimaAlta.jsp">Creacion clima</a><li>
+                                <li><a href="./MostruoAlta.jsp">Creacion rapida</a><li>
                             </ul>
                         </li>
-                    <li><a href="#" title="Login"><i class="fas fa-sign-in-alt"></i></a></li>
-                        <li><a href="#" title="Sign Up"><i class="fas fa-edit"></i></a></li>
                     </ul>
                     <!-- ################################################################################################ -->
                 </nav>

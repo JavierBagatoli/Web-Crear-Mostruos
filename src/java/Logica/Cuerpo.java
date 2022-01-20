@@ -26,6 +26,12 @@ public class Cuerpo implements Serializable {
     @Basic
     private String nombre;
     private String descripcion;
+    private short cantidadBrazos1;
+    private short cantidadBrazos2;
+    private short cantidadBrazos3;
+    private short cantidadPiernas1;
+    private short cantidadPiernas2;
+    private short cantidadPiernas3;
     @OneToMany
     private ArrayList<Brazo> brazos;
     @OneToMany
@@ -59,6 +65,56 @@ public class Cuerpo implements Serializable {
         this.descripcion = descripcion;
     }
 
+    public short getCantidadBrazos1() {
+        return cantidadBrazos1;
+    }
+
+    public void setCantidadBrazos1(short cantidadBrazos1) {
+        this.cantidadBrazos1 = cantidadBrazos1;
+    }
+
+    public short getCantidadBrazos2() {
+        return cantidadBrazos2;
+    }
+
+    public void setCantidadBrazos2(short cantidadBrazos2) {
+        this.cantidadBrazos2 = cantidadBrazos2;
+    }
+
+    public short getCantidadBrazos3() {
+        return cantidadBrazos3;
+    }
+
+    public void setCantidadBrazos3(short cantidadBrazos3) {
+        this.cantidadBrazos3 = cantidadBrazos3;
+    }
+
+    public short getCantidadPiernas1() {
+        return cantidadPiernas1;
+    }
+
+    public void setCantidadPiernas1(short cantidadPiernas1) {
+        this.cantidadPiernas1 = cantidadPiernas1;
+    }
+
+    public short getCantidadPiernas2() {
+        return cantidadPiernas2;
+    }
+
+    public void setCantidadPiernas2(short cantidadPiernas2) {
+        this.cantidadPiernas2 = cantidadPiernas2;
+    }
+
+    public short getCantidadPiernas3() {
+        return cantidadPiernas3;
+    }
+
+    public void setCantidadPiernas3(short cantidadPiernas3) {
+        this.cantidadPiernas3 = cantidadPiernas3;
+    }
+
+    
+    
     public ArrayList<Brazo> getBrazos() {
         return brazos;
     }
@@ -94,15 +150,23 @@ public class Cuerpo implements Serializable {
     public Cuerpo() {
     }
 
-    public Cuerpo(int idCuerpo, String nombre, String descripcion, ArrayList<Brazo> brazos, ArrayList<Pierna> piernas, Firma firma, Visibilidad visibilidad) {
+    public Cuerpo(int idCuerpo, String nombre, String descripcion, short cantidadBrazos1, short cantidadBrazos2, short cantidadBrazos3, short cantidadPiernas1, short cantidadPiernas2, short cantidadPiernas3, ArrayList<Brazo> brazos, ArrayList<Pierna> piernas, Firma firma, Visibilidad visibilidad) {
         this.idCuerpo = idCuerpo;
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.cantidadBrazos1 = cantidadBrazos1;
+        this.cantidadBrazos2 = cantidadBrazos2;
+        this.cantidadBrazos3 = cantidadBrazos3;
+        this.cantidadPiernas1 = cantidadPiernas1;
+        this.cantidadPiernas2 = cantidadPiernas2;
+        this.cantidadPiernas3 = cantidadPiernas3;
         this.brazos = brazos;
         this.piernas = piernas;
         this.firma = firma;
         this.visibilidad = visibilidad;
     }
+
+    
     
     
 }

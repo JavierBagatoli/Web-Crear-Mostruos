@@ -2,23 +2,23 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="MostruosPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>Logica.Ambiente.Clima</class>
-    <class>Logica.Ambiente.Planeta</class>
+    <class>Logica.Persona</class>
+    <class>Logica.Firma</class>
     <class>Logica.Brazo</class>
     <class>Logica.Cabeza</class>
-    <class>Logica.Criatura</class>
     <class>Logica.Cuerpo</class>
-    <class>Logica.Firma</class>
-    <class>Logica.Ojo</class>
-    <class>Logica.Persona</class>
     <class>Logica.Pierna</class>
     <class>Logica.Visibilidad</class>
+    <class>Logica.Ambiente.Clima</class>
+    <class>Logica.Ambiente.Planeta</class>
+    <class>Logica.Criatura</class>
+    <class>Logica.Ojo</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://sql10.freesqldatabase.com:3306/sql10465423?serverTimezone=UTC"/>
-      <property name="javax.persistence.jdbc.user" value="sql10465423"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mostruos?serverTimezone=UTC"/>
+      <property name="javax.persistence.jdbc.user" value="adminMostruos"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="p5fs5IEL6H"/>
+      <property name="javax.persistence.jdbc.password" value="adminMostruos"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>

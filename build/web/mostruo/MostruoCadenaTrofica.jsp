@@ -4,6 +4,7 @@
     Author     : JavW11trial
 --%>
 
+<%@page import="Logica.Persona"%>
 <%@page import="Logica.Criatura"%>
 <%@page import="java.util.List"%>
 <%@page import="Logica.Controladora"%>
@@ -39,8 +40,9 @@
     <body id="top">
         <%
         HttpSession misession = request.getSession();
+        int idPersona = -1;
         try{
-            int idPersona = (int) misession.getAttribute("idUsuario");
+            idPersona = (int) misession.getAttribute("idUsuario");
         }catch(NullPointerException e){
             response.sendRedirect("./Usuario/UsuarioLogin.jsp");
         }
@@ -57,8 +59,8 @@
                     <ul class="clear">
                         <li><a class="drop" href="#">Galeria</a>
                             <ul>
+                                <li><a href="./MostruosMostrar.jsp">Mostruos</a></li>
                                 <li><a href="./MiMostruosMostrar.jsp">Mis Mostruos</a></li>
-                                <li><a href="./MostruoCadenaTrofica.jsp">Mis Cadenas Troficas</a></li>
                             </ul>
                         </li>
                         <li><a class="drop" href="#">Creacion</a>
@@ -75,7 +77,7 @@
         <!-- ################################################################################################ -->
         <!-- ################################################################################################ -->
         <!-- ################################################################################################ -->
-        <div class="wrapper bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');">
+        <div class="wrapper bgded overlay" style="background-image:url('../images/demo/backgrounds/01.jpg');">
             <div id="breadcrumb" class="hoc clear"> 
                 <!-- ################################################################################################ -->
                 <ul>
@@ -102,9 +104,18 @@
 
                             <ul class="nospace clear">
                                 <% Controladora control = new Controladora();
+                                   Persona usuario = control.personaBuscar(idPersona);
                                     int i = 0;
                                     List<Criatura> listaCriaturas = control.traerCriaturas();
                                     for (Criatura criatura : listaCriaturas) {
+                                    int idPropietario = 0;
+                                    try{
+                                      idPropietario =  criatura.getFirma().getIdFirma();
+                                    }catch(NullPointerException e){
+                                    
+                                    }
+                                    
+                                        if (idPropietario == usuario.getFirma().getIdFirma()){
                                         String first = ""; //Creo varibale para poner en el css de la tabla
                                         i++;
                                         int resto = i % 4;
@@ -132,8 +143,9 @@
                                         <input class="imgOp" type="image" src=" <%=image%> " name="submit" alt="submit">
                                     </form>
                                     <a href="index.jsp"></a>
-                                    <h6><%=criatura.getNombre() %> </h6></li>
-                                    <%}%>
+                                    <h6> <%=criatura.getNombre() %> </h6>
+                                </li>
+                                    <%}}%>
                             </ul>
                             <figcaption>Gallery Description Goes Here</figcaption>
                         </figure>

@@ -4,6 +4,7 @@
     Author     : JavW11trial
 --%>
 
+<%@page import="Logica.Persona"%>
 <%@page import="Logica.Criatura"%>
 <%@page import="java.util.List"%>
 <%@page import="Logica.Controladora"%>
@@ -13,7 +14,7 @@
 <html lang="">
     <!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
     <head>
-        <title>Galeria Mostruos</title>
+        <title>Mis Criaturas</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -39,10 +40,11 @@
     <body id="top">
         <%
         HttpSession misession = request.getSession();
+        int idPersona = -1;
         try{
-            int idPersona = (int) misession.getAttribute("idUsuario");
+            idPersona = (int) misession.getAttribute("idUsuario");
         }catch(NullPointerException e){
-            response.sendRedirect("./Usuario/UsuarioLogin.jsp");
+            response.sendRedirect("../Usuario/UsuarioLogin.jsp");
         }
         %>
         <div class="wrapper row1">
@@ -57,7 +59,7 @@
                     <ul class="clear">
                         <li><a class="drop" href="#">Galeria</a>
                             <ul>
-                                <li><a href="./MiMostruosMostrar.jsp">Mis Mostruos</a></li>
+                                <li><a href="./MostruosMostrar.jsp">Mostruos</a></li>
                                 <li><a href="./MostruoCadenaTrofica.jsp">Mis Cadenas Troficas</a></li>
                             </ul>
                         </li>
@@ -102,9 +104,18 @@
 
                             <ul class="nospace clear">
                                 <% Controladora control = new Controladora();
+                                   Persona usuario = control.personaBuscar(idPersona);
                                     int i = 0;
                                     List<Criatura> listaCriaturas = control.traerCriaturas();
                                     for (Criatura criatura : listaCriaturas) {
+                                    int idPropietario = 0;
+                                    try{
+                                      idPropietario =  criatura.getFirma().getIdFirma();
+                                    }catch(NullPointerException e){
+                                    
+                                    }
+                                    
+                                        if (idPropietario == usuario.getFirma().getIdFirma()){
                                         String first = ""; //Creo varibale para poner en el css de la tabla
                                         i++;
                                         int resto = i % 4;
@@ -133,7 +144,7 @@
                                     </form>
                                     <a href="index.jsp"></a>
                                     <h6><%=criatura.getNombre() %> </h6></li>
-                                    <%}%>
+                                    <%}}%>
                             </ul>
                             <figcaption>Gallery Description Goes Here</figcaption>
                         </figure>

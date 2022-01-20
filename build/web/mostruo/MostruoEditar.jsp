@@ -36,11 +36,19 @@
         </style>
     </head>
     <body id="top" >
+        <%
+        HttpSession misession = request.getSession();
+        try{
+            int idPersona = (int) misession.getAttribute("idUsuario");
+        }catch(NullPointerException e){
+            response.sendRedirect("./Usuario/UsuarioLogin.jsp");
+        }
+        %>
         <div class="wrapper row1">
             <header id="header" class="hoc clear">
                 <div id="logo" class="fl_left"> 
                     <!-- ################################################################################################ -->
-                    <h1><a href="index.html">GenMos</a></h1>
+                    <h1><a href="../index.html">GenMos</a></h1>
                     <!-- ################################################################################################ -->
                 </div>
                 <nav id="mainav" class="fl_right"> 
@@ -48,13 +56,15 @@
                     <ul class="clear">
                         <li><a class="drop" href="#">Galeria</a>
                             <ul>
-                                <li><a href="Mostruo/MostruosMostrar.jsp">Mostruos</a></li>
+                                <li><a href="./MostruosMostrar.jsp">Mostruos</a></li>
+                                <li><a href="./MiMostruosMostrar.jsp">Mis Mostruos</a></li>
+                                <li><a href="./MostruoCadenaTrofica.jsp">Mis Cadenas Troficas</a></li>
                             </ul>
                         </li>
                         <li><a class="drop" href="#">Creacion</a>
                             <ul>
-                                <li><a href="pages/font-icons.html">Font Icons</a></li>
-                                <li><a href="Mostruo/MostruoAlta.jsp">Creacion rapida</a><li>
+                                <li><a href="../Clima/ClimaAlta.jsp">Creacion clima</a><li>
+                                <li><a href="./MostruoAlta.jsp">Creacion rapida</a><li>
                             </ul>
                         </li>
                     </ul>
@@ -66,7 +76,7 @@
         <!-- ################################################################################################ -->
         <!-- ################################################################################################ -->
         
-        <% HttpSession misession = request.getSession();
+        <% 
             Criatura criatura = (Criatura) misession.getAttribute("criatura");
             {
                 String ojo1 = "No se han ingresado Ojos";
@@ -87,8 +97,7 @@
                 List<Cuerpo> cuerposLista = control.traerCuerpos();
                 List<Brazo> brazosLista = control.traerBrazos();
                 List<Pierna> piernasLista = control.traerPiernas();
-                for (Cabeza cabeza : cabezasLista) {
-
+                List<Criatura> DepredadoresLista = control.traerCriaturas();
         %>        
         <h1 class="titulo">Editar <%=criatura.getNombre()%></h1>
         <div class="contenedor">
@@ -106,106 +115,107 @@
                             <div class="one_third first flex">
                                 <select name="cabezaCriatura" id="cabezaCriatura">
                                     <option value="vacio"></option>
+                                    <%for (Cabeza cabeza : cabezasLista) {%>
                                     <option value="<%=criatura.getCabeza().getIdCabeza()%>" selected><%=criatura.getCabeza().getNombre()%> </option>
                                     <%if (criatura.getCabeza().getIdCabeza() != cabeza.getIdCabeza()) {%>
                                     <option value="<%=cabeza.getIdCabeza()%>"><%=cabeza.getNombre()%> </option>
-                                    <%}%>
+                                    <%}} %>
                                 </select>
-
                                 <input class="one_third" type="text" name="nombreCabeza" id="nombreCabeza" value="" placeholder="Si desea crear escriba el nombre aqui">
                             </div>
                             <div class="block clear textarea">
                                 <label for="descripcionCabeza">Descripción de la Cabeza: </label>
-                                <textarea name="descripcionCabeza" id="descripcionCabeza" rows="3"><%=cabeza.getDescripcion()%></textarea>
+                                <textarea name="descripcionCabeza" id="descripcionCabeza" rows="3"><%=criatura.getCabeza().getDescripcion()%></textarea>
                             </div>
                         </div>
-                        <%}
-                            for (Ojo ojo : ojosLista) {
-
-                        %>
                         <div class="first">
-                            <label for="nombreOjo">Ojo: <span>*</span></label>
+                            <label for="ojoCriatura">Ojo: <span>*</span></label>
                             <div class="one_third first flex">
                                 <select name="ojoCriatura" id="ojoCriatura">
                                     <option value="vacio"></option>
+                                    <%for (Ojo ojo : ojosLista) {%>
                                     <option value="<%=criatura.getCabeza().getOjos().get(0).getIdOjo()%>" selected><%=criatura.getCabeza().getOjos().get(0).getNombre()%> </option>
                                     <%if (criatura.getCabeza().getOjos().get(0).getIdOjo() != ojo.getIdOjo()) {%>
                                     <option value="<%=ojo.getIdOjo()%>"><%=ojo.getNombre()%> </option>
-                                    <%} %>
+                                    <%}} %>
                                 </select>
 
                                 <input class="one_third" type="text" name="nombreOjo" id="nombreOjo" value="" placeholder="Si desea crear escriba el nombre aqui">
                             </div>
                         </div>
-                        <%}
-                            for (Cuerpo cuerpo : cuerposLista) {
-                        %>
+
                         <div class="first">
                             <label for="cuerpoCriatura">Cuerpo: <span>*</span></label>
                             <div class="one_third first flex">
                                 <select name="cuerpoCriatura" id="cuerpoCriatura">
                                     <option value="vacio"></option>
+                                    <%for (Cuerpo cuerpo : cuerposLista) {%>
                                     <option value="<%=criatura.getCuerpo().getIdCuerpo()%>" selected><%=criatura.getCuerpo().getNombre()%> </option>
                                     <%if (criatura.getCuerpo().getIdCuerpo() != cuerpo.getIdCuerpo()) {%>
                                     <option value="<%=cuerpo.getIdCuerpo()%>"><%=cuerpo.getNombre()%> </option>
-                                    <%} %>
+                                    <%}} %>
                                 </select>
 
                                 <input class="one_third" type="text" name="nombreCuerpo" id="nombreCuerpo" value="" placeholder="Si desea crear escriba el nombre aqui">
                             </div>
                         </div>
-                        <%}
-                            for (Brazo brazo : brazosLista) {
-                        %>
                         <div class="first">
                             <label for="brazoCriatura">Brazo: <span>*</span></label>
                             <div class="one_third first flex">
                                 <select name="brazoCriatura" id="brazoCriatura">
                                     <option value="vacio"></option>
+                                    <%for (Brazo brazo : brazosLista) {   %>
                                     <option value="<%=criatura.getCuerpo().getBrazos().get(0).getIdBrazo()%>" selected><%=criatura.getCuerpo().getBrazos().get(0).getNombre()%> </option>
                                     <%if (criatura.getCuerpo().getBrazos().get(0).getIdBrazo() != brazo.getIdBrazo()) {%>
                                     <option value="<%=brazo.getIdBrazo()%>"><%=brazo.getNombre()%> </option>
-                                    <%} %>
+                                    <%}} %>
                                 </select>
 
                                 <input class="one_third" type="text" name="nombreBrazo" id="nombreBrazo" value="" placeholder="Si desea crear escriba el nombre aqui">
                             </div>
                         </div>
-                        <%}
-                            for (Pierna pierna : piernasLista) {
-                        %>
                         <div class="first">
                             <label for="piernaCriatura">Cuerpo: <span>*</span></label>
                             <div class="one_third first flex">
                                 <select name="piernaCriatura" id="piernaCriatura">
                                     <option value="vacio"></option>
+                                    <%for (Pierna pierna : piernasLista) { %>
                                     <option value="<%=criatura.getCuerpo().getPiernas().get(0).getIdPierna()%>" selected><%=criatura.getCuerpo().getPiernas().get(0).getNombrePierna()%> </option>
                                     <%if (criatura.getCuerpo().getPiernas().get(0).getIdPierna() != pierna.getIdPierna()) {%>
                                     <option value="<%=pierna.getIdPierna()%>"><%=pierna.getNombrePierna()%> </option>
-                                    <%} %>
+                                    <%}} %>
                                 </select>
 
                                 <input class="one_third" type="text" name="nombrePierna" id="nombrePierna" value="" placeholder="Si desea crear escriba el nombre aqui">
                             </div> 
                         </div>
-                        <%}
-                        %>
                         <div class="block clear textarea">
                             <label for="descripcion">Descripción: </label>
                             <textarea class="" name="descripcion" id="descripcion" rows="10"></textarea>
                         </div>
                         
+                         <div class="first">
+                            <label for="depredadorCriatura">Depredador <span>*</span></label>
+                            <div class="one_third first flex">
+                                <select name="depredadorCriatura" id="depredadorCriatura">
+                                    <option value="vacio"></option>
+                                    <%for (Criatura depredador : DepredadoresLista) { %>
+                                    <option value="<%=depredador.getIdCriatura() %>"><%=depredador.getNombre() %> </option>
+                                    <%} %>
+                                </select>
+                            </div> 
+                        </div>
                         <input type="hidden" name="idCriatura" value="<%=criatura.getIdCriatura() %>">
                         <!-- Botones -->
                         <div>
                             <input type="submit" name="submit" value="Editar">
                             &nbsp;
                             <input type="reset" name="reset" value="Reset Form">
+                            <%}%>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <%}%>
     </body>
 </html>

@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,9 +48,10 @@ public class SvPersonaAlta extends HttpServlet {
         String emailUsuario = request.getParameter("emailUsuario");
         String contraseniaUsuario = request.getParameter("contraseniaUsuario");
         Date nacimientoUsuario = null;
-        try {
-            nacimientoUsuario =  formato.parse(request.getParameter("nacimientoUsuario"));
-        } catch (ParseException ex) {
+        try{
+            nacimientoUsuario = new SimpleDateFormat("yyyy-mm-dd")
+                        .parse(request.getParameter("nacimientoUsuario"));
+        }catch (ParseException ex) {
             Logger.getLogger(SvPersonaAlta.class.getName()).log(Level.SEVERE, null, ex);
         }
         String firmaUsuario = request.getParameter("firmaUsuario");

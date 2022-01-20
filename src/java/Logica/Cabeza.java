@@ -6,6 +6,7 @@ package Logica;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,8 +23,12 @@ public class Cabeza implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int idCabeza;
+    @Basic
     private String nombre;
     private String descripcion;
+    private short cantidadOjos1;
+    private short cantidadOjos2;
+    private short cantidadOjos3;
     @OneToMany
     private ArrayList<Ojo> ojos;
     @ManyToOne
@@ -55,6 +60,32 @@ public class Cabeza implements Serializable {
         this.descripcion = descripcion;
     }
 
+    public short getCantidadOjos1() {
+        return cantidadOjos1;
+    }
+
+    public void setCantidadOjos1(short cantidadOjos1) {
+        this.cantidadOjos1 = cantidadOjos1;
+    }
+
+    public short getCantidadOjos2() {
+        return cantidadOjos2;
+    }
+
+    public void setCantidadOjos2(short cantidadOjos2) {
+        this.cantidadOjos2 = cantidadOjos2;
+    }
+
+    public short getCantidadOjos3() {
+        return cantidadOjos3;
+    }
+
+    public void setCantidadOjos3(short cantidadOjos3) {
+        this.cantidadOjos3 = cantidadOjos3;
+    }
+
+    
+
     public ArrayList<Ojo> getOjos() {
         return ojos;
     }
@@ -82,14 +113,17 @@ public class Cabeza implements Serializable {
     public Cabeza() {
     }
 
-    public Cabeza(int idCabeza, String nombre, String descripcion, ArrayList<Ojo> ojos, Firma firma, Visibilidad visibilidad) {
+    public Cabeza(int idCabeza, String nombre, String descripcion, short cantidadOjos1, short cantidadOjos2, short cantidadOjos3, ArrayList<Ojo> ojos, Firma firma, Visibilidad visibilidad) {
         this.idCabeza = idCabeza;
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.cantidadOjos1 = cantidadOjos1;
+        this.cantidadOjos2 = cantidadOjos2;
+        this.cantidadOjos3 = cantidadOjos3;
         this.ojos = ojos;
         this.firma = firma;
         this.visibilidad = visibilidad;
     }
 
-    
+
 }

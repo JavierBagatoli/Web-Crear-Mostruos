@@ -24,6 +24,25 @@
         </style>
     </head>
     <body id="top" >
+        <div class="wrapper row1">
+            <header id="header" class="hoc clear">
+                <div id="logo" class="fl_left"> 
+                    <!-- ################################################################################################ -->
+                    <h1><a href="index.html">GenMos</a></h1>
+                    <!-- ################################################################################################ -->
+                </div>
+                <nav id="mainav" class="fl_right"> 
+                    <!-- ################################################################################################ -->
+                    <ul class="clear">
+                        <li><a class="drop" href="./UsuarioAlta.jsp">Registrarse</a> </li>
+                        
+                    </ul>
+                    <!-- ################################################################################################ -->
+                </nav>
+            </header>
+        </div>
+        
+        
         <h1 class="titulo">Login</h1>
         <div class="contenedor">
             <div class="wrapper row4 contenedor">

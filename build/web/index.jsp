@@ -16,6 +16,14 @@ Licence URI: https://www.os-templates.com/template-terms
         <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
     </head>
     <body id="top">
+        <%
+        HttpSession misession = request.getSession();
+        try{
+            int idPersona = (int) misession.getAttribute("idUsuario");
+        }catch(NullPointerException e){
+            response.sendRedirect("./Usuario/UsuarioLogin.jsp");
+        }
+        %>
         <!-- ################################################################################################ -->
         <!-- ################################################################################################ -->
         <!-- ################################################################################################ -->
@@ -39,6 +47,8 @@ Licence URI: https://www.os-templates.com/template-terms
                         <li><a class="drop" href="#">Galeria</a>
                             <ul>
                                 <li><a href="Mostruo/MostruosMostrar.jsp">Mostruos</a></li>
+                                <li><a href="Mostruo/MiMostruosMostrar.jsp">Mis Mostruos</a></li>
+                                <li><a href="Mostruo/MostruoCadenaTrofica.jsp">Mis Cadenas Troficas</a></li>
                             </ul>
                         </li>
                         <li><a class="drop" href="#">Creacion</a>
@@ -56,7 +66,7 @@ Licence URI: https://www.os-templates.com/template-terms
         <!-- ################################################################################################ -->
         <!-- ################################################################################################ -->
         <!-- ################################################################################################ -->
-        <div class="wrapper bgded overlay" style="background-image:url('images/demo/backgrounds/01.png');">
+        <div class="wrapper bgded overlay" style="background-image:url('images/demo/backgrounds/01.jpg');">
             <div id="pageintro" class="hoc clear"> 
                 <!-- ################################################################################################ -->
                 <article>
