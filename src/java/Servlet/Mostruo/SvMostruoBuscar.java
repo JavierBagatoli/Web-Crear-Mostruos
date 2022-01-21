@@ -34,7 +34,7 @@ public class SvMostruoBuscar extends HttpServlet {
         
         HttpSession misession = request.getSession();
         misession.setAttribute("criatura", criatura);
-        response.sendRedirect("./mostruo/MostruoMostrar.jsp");
+        response.sendRedirect("./Mostruo/MostruoMostrar.jsp");
     }
 
 

@@ -15,7 +15,7 @@ public class Visibilidad implements Serializable {
     private int idVisibilidad;
     @Basic
     @ManyToOne
-    private Visibilidad visibilidad;
+    private String visibilidad;
 
     public int getIdVisibilidad() {
         return idVisibilidad;
@@ -25,18 +25,18 @@ public class Visibilidad implements Serializable {
         this.idVisibilidad = idVisibilidad;
     }
 
-    public Visibilidad getVisibilidad() {
+    public String getVisibilidad() {
         return visibilidad;
     }
 
-    public void setVisibilidad(Visibilidad visibilidad) {
+    public void setVisibilidad(String visibilidad) {
         this.visibilidad = visibilidad;
     }
 
     public Visibilidad() {
     }
 
-    public Visibilidad(int idVisibilidad, Visibilidad visibilidad) {
+    public Visibilidad(int idVisibilidad, String visibilidad) {
         this.idVisibilidad = idVisibilidad;
         this.visibilidad = visibilidad;
     }

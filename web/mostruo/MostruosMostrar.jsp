@@ -37,81 +37,36 @@
         </style>
     </head>
     <body id="top">
-        <!-- ################################################################################################ -->
-        <!-- ################################################################################################ -->
-        <!-- ################################################################################################ -->
-        <div class="wrapper row0">
-            <div id="topbar" class="hoc clear">
-                <div class="fl_left"> 
-                    <!-- ################################################################################################ -->
-                    <ul class="nospace">
-                        <li><i class="far fa-envelope rgtspace-5"></i> info@domain.com</li>
-                    </ul>
-                    <!-- ################################################################################################ -->
-                </div>
-                <div class="fl_right"> 
-                    <!-- ################################################################################################ -->
-                    <ul class="nospace">
-                        <li><a href="../index.html"><i class="fas fa-home"></i></a></li>
-                        <li><a href="#" title="Help Centre"><i class="far fa-life-ring"></i></a></li>
-                        <li><a href="#" title="Login"><i class="fas fa-sign-in-alt"></i></a></li>
-                        <li><a href="#" title="Sign Up"><i class="fas fa-edit"></i></a></li>
-                        <li id="searchform">
-                            <div>
-                                <form action="#" method="post">
-                                    <fieldset>
-                                        <legend>Quick Search:</legend>
-                                        <input type="text" placeholder="Enter search term&hellip;">
-                                        <button type="submit"><i class="fas fa-search"></i></button>
-                                    </fieldset>
-                                </form>
-                            </div>
-                        </li>
-                    </ul>
-                    <!-- ################################################################################################ -->
-                </div>
-            </div>
-        </div>
-        <!-- ################################################################################################ -->
-        <!-- ################################################################################################ -->
-        <!-- ################################################################################################ -->
+        <%
+        HttpSession misession = request.getSession();
+        try{
+            int idPersona = (int) misession.getAttribute("idUsuario");
+        }catch(NullPointerException e){
+            response.sendRedirect("./Usuario/UsuarioLogin.jsp");
+        }
+        %>
         <div class="wrapper row1">
             <header id="header" class="hoc clear">
                 <div id="logo" class="fl_left"> 
                     <!-- ################################################################################################ -->
-                    <h1><a href="../index.html">Gleblu</a></h1>
+                    <h1><a href="../index.html">GenMos</a></h1>
                     <!-- ################################################################################################ -->
                 </div>
                 <nav id="mainav" class="fl_right"> 
                     <!-- ################################################################################################ -->
                     <ul class="clear">
-                        <li><a href="../index.html">Home</a></li>
-                        <li class="active"><a class="drop" href="#">Pages</a>
+                        <li><a class="drop" href="#">Galeria</a>
                             <ul>
-                                <li class="active"><a href="gallery.html">Gallery</a></li>
-                                <li><a href="full-width.html">Full Width</a></li>
-                                <li><a href="sidebar-left.html">Sidebar Left</a></li>
-                                <li><a href="sidebar-right.html">Sidebar Right</a></li>
-                                <li><a href="basic-grid.html">Basic Grid</a></li>
-                                <li><a href="font-icons.html">Font Icons</a></li>
+                                <li><a href="./MiMostruosMostrar.jsp">Mis Mostruos</a></li>
+                                <li><a href="./MostruoCadenaTrofica.jsp">Mis Cadenas Troficas</a></li>
                             </ul>
                         </li>
-                        <li><a class="drop" href="#">Dropdown</a>
+                        <li><a class="drop" href="#">Creacion</a>
                             <ul>
-                                <li><a href="#">Level 2</a></li>
-                                <li><a class="drop" href="#">Level 2 + Drop</a>
-                                    <ul>
-                                        <li><a href="#">Level 3</a></li>
-                                        <li><a href="#">Level 3</a></li>
-                                        <li><a href="#">Level 3</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Level 2</a></li>
+                                <li><a href="../Clima/ClimaAlta.jsp">Creacion clima</a><li>
+                                <li><a href="./MostruoAlta.jsp">Creacion rapida</a><li>
                             </ul>
                         </li>
-                        <li><a href="#">Link Text</a></li>
-                        <li><a href="#">Link Text</a></li>
-                        <li><a href="#">Link Text</a></li>
                     </ul>
                     <!-- ################################################################################################ -->
                 </nav>
@@ -150,7 +105,7 @@
                                     int i = 0;
                                     List<Criatura> listaCriaturas = control.traerCriaturas();
                                     for (Criatura criatura : listaCriaturas) {
-                                        String first = "";
+                                        String first = ""; //Creo varibale para poner en el css de la tabla
                                         i++;
                                         int resto = i % 4;
                                         Random r = new Random();
@@ -165,7 +120,7 @@
                                                 image = "../images/demo/gallery/2.jpg";
                                                 break;
                                         }
-                                        if (resto == 0) {
+                                        if (resto == 0) {//Es la primera posicion para el css?
                                             first = "first";
                                         }
 
@@ -173,7 +128,7 @@
                                 %>
                                 <li class="one_quarter <%=first%>">
                                     <form action="../SvMostruoBuscar" method="POST">
-                                        <input type="hidden" name="id" value="<%=criatura.getId_Criatura() %>">
+                                        <input type="hidden" name="id" value="<%=criatura.getIdCriatura() %>">
                                         <input class="imgOp" type="image" src=" <%=image%> " name="submit" alt="submit">
                                     </form>
                                     <a href="index.jsp"></a>

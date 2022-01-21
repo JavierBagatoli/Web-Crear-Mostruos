@@ -20,7 +20,7 @@ public class Planeta implements Serializable {
     private String nombre;
     private String descripcion;
     private String tamanio;
-    private int gravedad;
+    private float gravedad;
     private String sistemaPlanetario;
     private ArrayList<String> recursosLista = new ArrayList<String>();
     @ManyToOne
@@ -60,11 +60,11 @@ public class Planeta implements Serializable {
         this.tamanio = tamanio;
     }
 
-    public int getGravedad() {
+    public float getGravedad() {
         return gravedad;
     }
 
-    public void setGravedad(int gravedad) {
+    public void setGravedad(float gravedad) {
         this.gravedad = gravedad;
     }
 

@@ -5,12 +5,15 @@
 package Logica;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -25,6 +28,8 @@ public class Criatura implements Serializable {
     @Basic
     private String nombre;
     private String descripcion;
+    private short ferocidad;
+    private short cantidadCabezas;                           
     @OneToOne
     private Cuerpo cuerpo;
     @OneToOne
@@ -32,7 +37,9 @@ public class Criatura implements Serializable {
     @ManyToOne
     private Firma firma;
     @ManyToOne
-    private Visibilidad visibildiad;
+    private Visibilidad visibilidad;
+    @OneToMany
+    private ArrayList<Criatura> presaDe = new ArrayList<>();
 
     public int getIdCriatura() {
         return idCriatura;
@@ -56,6 +63,22 @@ public class Criatura implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public int getFerocidad() {
+        return ferocidad;
+    }
+
+    public void setFerocidad(short ferocidad) {
+        this.ferocidad = ferocidad;
+    }
+
+    public short getCantidadCabezas() {
+        return cantidadCabezas;
+    }
+
+    public void setCantidadCabezas(short cantidadCabezas) {
+        this.cantidadCabezas = cantidadCabezas;
     }
 
     public Cuerpo getCuerpo() {
@@ -82,26 +105,36 @@ public class Criatura implements Serializable {
         this.firma = firma;
     }
 
-    public Visibilidad getVisibildiad() {
-        return visibildiad;
+    public Visibilidad getVisibilidad() {
+        return visibilidad;
     }
 
-    public void setVisibildiad(Visibilidad visibildiad) {
-        this.visibildiad = visibildiad;
+    public void setVisibilidad(Visibilidad visibilidad) {
+        this.visibilidad = visibilidad;
+    }
+
+    public List<Criatura> getPresaDe() {
+        return presaDe;
+    }
+
+    public void setPresaDe(ArrayList<Criatura> presaDe) {
+        this.presaDe = presaDe;
     }
 
     public Criatura() {
     }
 
-    public Criatura(int idCriatura, String nombre, String descripcion, Cuerpo cuerpo, Cabeza cabeza, Firma firma, Visibilidad visibildiad) {
+    public Criatura(int idCriatura, String nombre, String descripcion, short ferocidad, short cantidadCabezas, Cuerpo cuerpo, Cabeza cabeza, Firma firma, Visibilidad visibilidad) {
         this.idCriatura = idCriatura;
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.ferocidad = ferocidad;
+        this.cantidadCabezas = cantidadCabezas;
         this.cuerpo = cuerpo;
         this.cabeza = cabeza;
         this.firma = firma;
-        this.visibildiad = visibildiad;
+        this.visibilidad = visibilidad;
     }
-    
-    
+
+
 }

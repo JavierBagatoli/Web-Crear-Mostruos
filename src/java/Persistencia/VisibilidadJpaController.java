@@ -5,13 +5,14 @@
 package Persistencia;
 
 import Logica.Visibilidad;
-import Logica.exceptions.NonexistentEntityException;
+import Persistencia.exceptions.NonexistentEntityException;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -26,6 +27,10 @@ public class VisibilidadJpaController implements Serializable {
     }
     private EntityManagerFactory emf = null;
 
+    VisibilidadJpaController() {
+        emf = Persistence.createEntityManagerFactory("MostruosPU");
+    }
+    
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
@@ -35,21 +40,7 @@ public class VisibilidadJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Visibilidad visibilidadRel = visibilidad.getVisibilidad();
-            if (visibilidadRel != null) {
-                visibilidadRel = em.getReference(visibilidadRel.getClass(), visibilidadRel.getIdVisibilidad());
-                visibilidad.setVisibilidad(visibilidadRel);
-            }
             em.persist(visibilidad);
-            if (visibilidadRel != null) {
-                Visibilidad oldVisibilidadOfVisibilidadRel = visibilidadRel.getVisibilidad();
-                if (oldVisibilidadOfVisibilidadRel != null) {
-                    oldVisibilidadOfVisibilidadRel.setVisibilidad(null);
-                    oldVisibilidadOfVisibilidadRel = em.merge(oldVisibilidadOfVisibilidadRel);
-                }
-                visibilidadRel.setVisibilidad(visibilidad);
-                visibilidadRel = em.merge(visibilidadRel);
-            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -63,27 +54,7 @@ public class VisibilidadJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Visibilidad persistentVisibilidad = em.find(Visibilidad.class, visibilidad.getIdVisibilidad());
-            Visibilidad visibilidadRelOld = persistentVisibilidad.getVisibilidad();
-            Visibilidad visibilidadRelNew = visibilidad.getVisibilidad();
-            if (visibilidadRelNew != null) {
-                visibilidadRelNew = em.getReference(visibilidadRelNew.getClass(), visibilidadRelNew.getIdVisibilidad());
-                visibilidad.setVisibilidad(visibilidadRelNew);
-            }
             visibilidad = em.merge(visibilidad);
-            if (visibilidadRelOld != null && !visibilidadRelOld.equals(visibilidadRelNew)) {
-                visibilidadRelOld.setVisibilidad(null);
-                visibilidadRelOld = em.merge(visibilidadRelOld);
-            }
-            if (visibilidadRelNew != null && !visibilidadRelNew.equals(visibilidadRelOld)) {
-                Visibilidad oldVisibilidadOfVisibilidadRel = visibilidadRelNew.getVisibilidad();
-                if (oldVisibilidadOfVisibilidadRel != null) {
-                    oldVisibilidadOfVisibilidadRel.setVisibilidad(null);
-                    oldVisibilidadOfVisibilidadRel = em.merge(oldVisibilidadOfVisibilidadRel);
-                }
-                visibilidadRelNew.setVisibilidad(visibilidad);
-                visibilidadRelNew = em.merge(visibilidadRelNew);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -112,11 +83,6 @@ public class VisibilidadJpaController implements Serializable {
                 visibilidad.getIdVisibilidad();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The visibilidad with id " + id + " no longer exists.", enfe);
-            }
-            Visibilidad visibilidadRel = visibilidad.getVisibilidad();
-            if (visibilidadRel != null) {
-                visibilidadRel.setVisibilidad(null);
-                visibilidadRel = em.merge(visibilidadRel);
             }
             em.remove(visibilidad);
             em.getTransaction().commit();

@@ -31,6 +31,7 @@ public class CriaturaJpaController implements Serializable {
         emf = Persistence.createEntityManagerFactory("MostruosPU");
     }
     private EntityManagerFactory emf = null;
+    
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
